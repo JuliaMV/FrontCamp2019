@@ -1,0 +1,25 @@
+.sources_item {
+  display: block;
+  margin: 5px;
+  padding: 5px 10px;
+  text-align: center;
+  border: 1px solid var(--text-color);
+  border-radius: 3px;
+
+  &:hover {
+    font-weight: 700;
+    color: var(--main-color);
+    cursor: pointer;
+  }
+
+  &-active {
+    color: var(--accent-color);
+    font-weight: 700;
+  }
+
+  @media (max-width: 800px) {
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}

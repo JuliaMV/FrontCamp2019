@@ -3,7 +3,10 @@
     [
       "@babel/preset-env",
       {
-        "useBuiltIns": "entry"
+        "targets": {
+          "chrome": 75
+        },
+        "useBuiltIns": "usage"
       }
     ]
   ],
