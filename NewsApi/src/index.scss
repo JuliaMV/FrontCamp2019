@@ -50,6 +50,8 @@ body {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .sources {
@@ -63,7 +65,7 @@ body {
 
 .news {
   display: block;
-  width: 70%;
+  width: 75%;
 
   @media (max-width: 800px) {
     width: 100%;
