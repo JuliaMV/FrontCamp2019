@@ -20,20 +20,6 @@ body {
   flex-grow: 1;
 }
 
-.header {
-  animation: blink 7s infinite ease-in-out;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 .title {
   font-family: 'Slabo 27px', serif;
   font-weight: 400;
@@ -50,6 +36,20 @@ body {
   letter-spacing: 0.1px;
   margin-top: 0;
   text-align: center;
+}
+
+.letters {
+  padding-bottom: 10px;
+
+  @media (max-width: 800px) {
+    padding-bottom: 0px;
+  }
+}
+
+.letters_list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .main {
@@ -78,6 +78,7 @@ body {
   }
 }
 
+.letters_list,
 .sources_list,
 .news_list {
   margin: 0;

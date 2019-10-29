@@ -2,15 +2,15 @@ import SourceTemplate from '../templates/Source';
 import NewsTemplate from '../templates/News';
 import Error from '../templates/Error';
 import Loader from '../templates/Loader';
+import Letter from '../templates/Letter';
 
 const baseUrl = 'https://newsapi.org/v2/';
-
-let privat = null;
 
 export default class App {
   constructor(key) {
     this.key = key;
     this.targetSource;
+    this.targetLetter;
     this.page = 1;
   }
   
@@ -35,9 +35,27 @@ export default class App {
       .catch((error) => console.log(error))
   }
 
+  clickLetterHandler = ({ target }) => {
+    if (target.tagName === 'UL') {
+      return;
+    }
+    if (target.tagName === 'SPAN') {
+      target = target.parentNode;
+    }
+    const currentLetter = target.dataset.letter;
+    if (this.targetLetter === currentLetter) {
+      return;
+    }
+    this.renderSources(currentLetter);
+
+    if (this.targetLetter) {
+      this.targetLetter.classList.remove('letters_item-active');
+    }
+    target.classList.add('letters_item-active');
+    this.targetLetter = target;
+  }
   
-  clickHandler = async (event) => {
-    let { target } = event;
+  clickSourceHandler = async ({ target }) => {
     if (target.tagName === 'UL') {
       return;
     }
@@ -65,9 +83,21 @@ export default class App {
     }
   }
 
-  renderSources() {
+  renderLetters = () => {
+    const firstLetters = this.sources.map(source => source.name[0].toUpperCase());
+    const letters = new Set(firstLetters);
+    const containerL = document.querySelector('.letters_list');
+    let lettersHTML = "";
+    letters.forEach(letter => {
+      lettersHTML += Letter(letter);
+    })
+    containerL.innerHTML = lettersHTML;
+  }
+
+  renderSources = (letter) => {
     const container = document.querySelector('.sources_list');
     container.innerHTML = this.sources
+      .filter(source => source.name[0].toUpperCase() === letter)
       .map((source) => SourceTemplate(source))
       .join('');
   }
@@ -106,11 +136,12 @@ export default class App {
     this.renderLoader();
     try {
       this.sources = await this.getSources();
-      this.removeLoader()
-      this.renderSources();
+      this.removeLoader();
+      this.renderLetters();
     } catch(error) {
       console.log(error);
     }
-    document.querySelector('.sources').addEventListener('click', this.clickHandler)
+    document.querySelector('.sources').addEventListener('click', this.clickSourceHandler);
+    document.querySelector('.letters').addEventListener('click', this.clickLetterHandler);
   }
 }
