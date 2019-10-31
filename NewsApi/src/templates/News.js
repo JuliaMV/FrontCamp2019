@@ -1,6 +1,7 @@
 import './News.scss';
 
-const placeholder = 'https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder.jpg';
+// const placeholder = 'https://309w5s255371fs4df2vftgbl-wpengine.netdna-ssl.com/wp-content/uploads/2017/09/placeholder.jpg';
+import placeholder from "../assets/img/placeholder.jpg";
 
 const NewsTemplate = ({ urlToImage, url, title, description, publishedAt }) => `
   <li class="news_item">

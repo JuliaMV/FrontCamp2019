@@ -1,8 +1,8 @@
-import SourceTemplate from '../templates/Source';
-import NewsTemplate from '../templates/News';
-import Error from '../templates/Error';
-import Loader from '../templates/Loader';
-import Letter from '../templates/Letter';
+import SourceTemplate from 'Templates/Source';
+import NewsTemplate from 'Templates/News';
+import Error from 'Templates/Error';
+import Loader from 'Templates/Loader';
+import Letter from 'Templates/Letter';
 
 const baseUrl = 'https://newsapi.org/v2/';
 
