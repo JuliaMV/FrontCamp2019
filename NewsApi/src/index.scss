@@ -36,6 +36,10 @@ body {
   text-align: center;
   color: var(--main-color);
   letter-spacing: 0.5px;
+
+  @media (max-width: 800px) {
+    font-size: 34px;
+  }
 }
 
 .subtitle {
@@ -44,6 +48,10 @@ body {
   letter-spacing: 0.1px;
   margin-top: 0;
   text-align: center;
+  
+  @media (max-width: 800px) {
+    font-size: 16px;
+  }
 }
 
 .letters {
@@ -62,7 +70,7 @@ body {
 
 .main {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
@@ -70,20 +78,6 @@ body {
 
 .sources {
   display: block;
-  width: 25%;
-
-  @media (max-width: 800px) {
-    width: 100%;
-  }
-}
-
-.news {
-  display: block;
-  width: 75%;
-
-  @media (max-width: 800px) {
-    width: 100%;
-  }
 }
 
 .letters_list,
@@ -96,22 +90,18 @@ body {
 }
 
 .sources_list {
-  padding-left: 5px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-  @media (max-width: 800px) {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    overflow-x: scroll;
-  }
+.sources_list-hide {
+  visibility: hidden;
+  height: 0px;
 }
 
 .news_list {
-  padding-top: 5px;
-
-  @media (max-width: 800px) {
-    padding-top: 20px;
-  }
+  padding-top: 10px;
 }
 
 .copyright {

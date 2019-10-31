@@ -6,6 +6,10 @@ import Letter from 'Templates/Letter';
 
 const baseUrl = 'https://newsapi.org/v2/';
 
+const sourcesHideClass = 'sources_list-hide';
+const sourcesActiveClass = 'sources_item-active';
+const lettersActiveClass = 'letters_item-active';
+
 export default class App {
   constructor(key) {
     this.key = key;
@@ -40,21 +44,24 @@ export default class App {
     if (target.tagName === 'UL') {
       return;
     }
+
+    if (this.containerSources) {
+      this.containerSources.classList.remove(sourcesHideClass);
+    }
+
     if (target.tagName === 'SPAN') {
       target = target.parentNode;
     }
     const { letter: currentLetter} = target.dataset;
-    if (this.targetLetter === currentLetter) {
+    if (this.targetLetter && this.targetLetter.dataset.letter === currentLetter) {
       return;
     }
     this.renderSources(currentLetter);
 
-    const activeClass = 'letters_item-active';
-
     if (this.targetLetter) {
-      this.targetLetter.classList.remove(activeClass);
+      this.targetLetter.classList.remove(lettersActiveClass);
     }
-    target.classList.add(activeClass);
+    target.classList.add(lettersActiveClass);
     this.targetLetter = target;
   }
   
@@ -69,16 +76,15 @@ export default class App {
     if (this.targetSource === target) {
       return;
     }
-
-    const activeClass = 'sources_item-active';
-
-    if (this.targetSource) {
-      this.targetSource.classList.remove(activeClass);
-    }
-    target.classList.add(activeClass);
-    this.targetSource = target;
     
+    if (this.targetSource) {
+      this.targetSource.classList.remove(sourcesActiveClass);
+    }
+    target.classList.add(sourcesActiveClass);
+    this.targetSource = target;
+
     this.renderLoader();
+
     try {
       const news = await this.getNews(currentSource);
       this.renderNews(news);
@@ -87,6 +93,8 @@ export default class App {
       this.renderError();
       console.log(error);
     }
+
+    this.containerSources.classList.add(sourcesHideClass);
   }
 
   renderLetters = () => {
