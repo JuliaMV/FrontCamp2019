@@ -12,6 +12,7 @@ export default class App {
     this.targetSource;
     this.targetLetter;
     this.page = 1;
+    this.pageSize = 10;
   }
   
   getSources() {
@@ -26,7 +27,7 @@ export default class App {
 
   
   getNews(currentSource) {
-    return fetch(`${baseUrl}everything?sources=${currentSource}&pageSize=10&page=${this.page}&apiKey=${this.key}`)
+    return fetch(`${baseUrl}everything?sources=${currentSource}&pageSize=${this.pageSize}&page=${this.page}&apiKey=${this.key}`)
       .then((response) => response.json())
       .then((json) => {
         const { articles } = json;
@@ -42,16 +43,18 @@ export default class App {
     if (target.tagName === 'SPAN') {
       target = target.parentNode;
     }
-    const currentLetter = target.dataset.letter;
+    const { letter: currentLetter} = target.dataset;
     if (this.targetLetter === currentLetter) {
       return;
     }
     this.renderSources(currentLetter);
 
+    const activeClass = 'letters_item-active';
+
     if (this.targetLetter) {
-      this.targetLetter.classList.remove('letters_item-active');
+      this.targetLetter.classList.remove(activeClass);
     }
-    target.classList.add('letters_item-active');
+    target.classList.add(activeClass);
     this.targetLetter = target;
   }
   
@@ -66,10 +69,13 @@ export default class App {
     if (this.targetSource === target) {
       return;
     }
+
+    const activeClass = 'sources_item-active';
+
     if (this.targetSource) {
-      this.targetSource.classList.remove('sources_item-active');
+      this.targetSource.classList.remove(activeClass);
     }
-    target.classList.add('sources_item-active');
+    target.classList.add(activeClass);
     this.targetSource = target;
     
     this.renderLoader();
@@ -95,20 +101,24 @@ export default class App {
   }
 
   renderSources = (letter) => {
-    const container = document.querySelector('.sources_list');
-    container.innerHTML = this.sources
+    if (!this.containerSources) {
+        this.containerSources = document.querySelector('.sources_list');
+    }
+    this.containerSources.innerHTML = this.sources
       .filter(source => source.name[0].toUpperCase() === letter)
       .map((source) => SourceTemplate(source))
       .join('');
   }
 
   renderNews(news) {
-    const container = document.querySelector('.news_list');
+    if (!this.containerNews) {
+      this.containerNews = document.querySelector('.news_list');
+    }
     if (news.length === 0) {
-      container.innerHTML = Error();
+        this.containerNews.innerHTML = Error();
       return;
     }
-    container.innerHTML = news
+    this.containerNews.innerHTML = news
       .map(item => NewsTemplate(item))
       .join('');
     window.scrollTo({
@@ -118,18 +128,21 @@ export default class App {
   }
 
   renderError() {
-    const container = document.querySelector('.news_list');
-    container.innerHTML = Error(true);
+    if (!this.containerError) {
+      this.containerError = document.querySelector('.news_list');
+    }
+    this.containerError.innerHTML = Error(true);
   }
 
   renderLoader = () => {
-    const container = document.querySelector('.loader_container');
-    container.innerHTML = Loader();
+    if (!this.containerLoader) {
+      this.containerLoader = document.querySelector('.loader_container');
+    }
+    this.containerLoader.innerHTML = Loader();
   }
 
   removeLoader = () => {
-    const container = document.querySelector('.loader_container');
-    container.innerHTML = '';
+    this.containerLoader.innerHTML = '';
   }
 
   start = async () => {
