@@ -10,6 +10,9 @@ const sourcesHideClass = 'sources_list-hide';
 const sourcesActiveClass = 'sources_item-active';
 const lettersActiveClass = 'letters_item-active';
 
+const GET_SOURCES = 'getSources';
+const GET_NEWS = 'getNews';
+
 export default class App {
   constructor(key) {
     this.key = key;
@@ -18,26 +21,39 @@ export default class App {
     this.page = 1;
     this.pageSize = 10;
   }
-  
-  getSources() {
-    return fetch(`${baseUrl}sources?apiKey=${this.key}`)
-      .then((response) => response.json())
-      .then((json) => {
-        const { sources } = json;
-        return sources;
-      })
-      .catch((error) => console.log(error))
+
+  requestsFactory = ({ type, ...rest }) => {
+    switch (type) {
+      case GET_NEWS: {
+        const { currentSource } = rest;
+        return fetch(`${baseUrl}everything?sources=${currentSource}&pageSize=${this.pageSize}&page=${this.page}&apiKey=${this.key}`)
+        .then((response) => response.json())
+        .then((json) => {
+          const { articles } = json;
+          return articles;
+        })
+        .catch((error) => this.logError(error));
+      }
+      case GET_SOURCES: {
+        return fetch(`${baseUrl}sources?apiKey=${this.key}`)
+        .then((response) => response.json())
+        .then((json) => {
+          const { sources } = json;
+          return sources;
+        })
+        .catch((error) => this.log(error))
+      }
+    }
+
   }
 
-  
-  getNews(currentSource) {
-    return fetch(`${baseUrl}everything?sources=${currentSource}&pageSize=${this.pageSize}&page=${this.page}&apiKey=${this.key}`)
-      .then((response) => response.json())
-      .then((json) => {
-        const { articles } = json;
-        return articles;
-      })
-      .catch((error) => console.log(error))
+  logError = (error) => {
+    import(/* webpackChunkName: "ErrorHandler" */ './ErrorHandler').then(module => {
+      const ErrorHandler = module.default;
+      const handler = new ErrorHandler;
+      handler.showAlert();
+      console.log(error);
+    });
   }
 
   clickLetterHandler = ({ target }) => {
@@ -86,14 +102,13 @@ export default class App {
     this.renderLoader();
 
     try {
-      const news = await this.getNews(currentSource);
+      const news = await this.requestsFactory({type: GET_NEWS, currentSource});
       this.renderNews(news);
-      this.removeLoader();
     } catch(error) {
-      this.renderError();
-      console.log(error);
+      this.logError(error);
     }
-
+    
+    this.removeLoader();
     this.containerSources.classList.add(sourcesHideClass);
   }
 
@@ -156,12 +171,13 @@ export default class App {
   start = async () => {
     this.renderLoader();
     try {
-      this.sources = await this.getSources();
-      this.removeLoader();
+      this.sources = await this.requestsFactory({type: GET_SOURCES});
       this.renderLetters();
     } catch(error) {
-      console.log(error);
+      this.logError(error);
     }
+
+    this.removeLoader();
     document.querySelector('.sources').addEventListener('click', this.clickSourceHandler);
     document.querySelector('.letters').addEventListener('click', this.clickLetterHandler);
   }
