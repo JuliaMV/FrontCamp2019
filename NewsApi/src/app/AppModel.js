@@ -15,21 +15,19 @@ export default class AppModel {
       case GET_NEWS: {
         const { currentSource } = rest;
         return fetch(`${baseUrl}everything?sources=${currentSource}&pageSize=${this.pageSize}&page=${this.page}&apiKey=${this.key}`)
-        .then((response) => response.json())
-        .then((json) => {
-          const { articles } = json;
-          return articles;
-        })
-        .catch((error) => this.logError(error));
+          .then((response) => response.json())
+          .then((json) => {
+            const { articles } = json;
+            return articles;
+          })
       }
       case GET_SOURCES: {
         return fetch(`${baseUrl}sources?apiKey=${this.key}`)
-        .then((response) => response.json())
-        .then((json) => {
-          const { sources } = json;
-          return sources;
-        })
-        .catch((error) => this.log(error))
+          .then((response) => response.json())
+          .then((json) => {
+            const { sources } = json;
+            return sources;
+          })
       }
     }
   }
@@ -45,7 +43,7 @@ export default class AppModel {
     import(/* webpackChunkName: "ErrorHandler" */ './ErrorHandler').then(module => {
       const ErrorHandler = module.default;
       const handler = new ErrorHandler;
-      handler.showAlert();
+      handler.showPopup();
       console.log(error);
     });
   }
