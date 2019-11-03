@@ -8,7 +8,6 @@ export default class ErrorHandler {
     ErrorHandlerInstance = this;
   }
 
-
   showAlert() {
     alert(`Sorry something went wrong`);
   }
