@@ -1,0 +1,19 @@
+.sources_item {
+  display: block;
+  margin: 5px;
+  padding: 5px 10px;
+  text-align: center;
+  font-weight: 400;
+  border-bottom: 1px solid transparent;
+  border-radius: 3px;
+
+  &:hover {
+    color: var(--main-color);
+    cursor: pointer;
+  }
+  
+  &-active {
+    color: var(--accent-color);
+    border-bottom: 1px solid var(--accent-color);
+  }
+}
