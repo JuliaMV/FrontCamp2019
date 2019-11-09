@@ -341,5 +341,108 @@ output:
 
 5. Create an index to make query from task 3.4 covered and provide proof (from explain() or Compass UI) that
 it is indeed covered  
-```db.restaurants.createIndex({name: 1, "grades.score": 1})```  
-TBD
+```db.restaurants.createIndex({"grades.8.score": 1, name: 1})```  
+output: ```{
+        "createdCollectionAutomatically" : true,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}```
+
+
+tests:
+
+query: ```db.restaurants.explain("executionStats").find({"grades.8.score": {$lt: 7}, name: "Morris Park Bake Shop"}, {name: 1, _id: 0})```  
+output:  
+```{
+        "queryPlanner" : {
+                "plannerVersion" : 1,
+                "namespace" : "test.restaurants",
+                "indexFilterSet" : false,
+                "parsedQuery" : {
+                        "$and" : [
+                                {
+                                        "name" : {
+                                                "$eq" : "Morris Park Bake Shop"
+                                        }
+                                },
+                                {
+                                        "grades.8.score" : {
+                                                "$lt" : 7
+                                        }
+                                }
+                        ]
+                },
+                "winningPlan" : {
+                        "stage" : "PROJECTION_COVERED",
+                        "transformBy" : {
+                                "name" : 1,
+                                "_id" : 0
+                        },
+                        "inputStage" : {
+                                "stage" : "IXSCAN",
+                                "keyPattern" : {
+                                        "grades.8.score" : 1,
+                                        "name" : 1,
+                                        "_id" : 1
+                                },
+                                "indexName" : "grades.8.score_1_name_1__id_1",
+                                "isMultiKey" : false,
+                                "multiKeyPaths" : {
+                                        "grades.8.score" : [ ],
+                                        "name" : [ ],
+                                        "_id" : [ ]
+                                },
+                                "isUnique" : false,
+                                "isSparse" : false,
+                                "isPartial" : false,
+                                "indexVersion" : 2,
+                                "direction" : "forward",
+                                "indexBounds" : {
+                                        "grades.8.score" : [
+                                                "[-inf.0, 7.0)"
+                                        ],
+                                        "name" : [
+                                                "[\"Morris Park Bake Shop\", \"Morris Park Bake Shop\"]"
+                                        ],
+                                        "_id" : [
+                                                "[MinKey, MaxKey]"
+                                        ]
+                                }
+                        }
+                }
+            ...
+}
+```
+
+query: ```db.restaurants.explain("executionStats").find({"grades.8.grade": "A"}, {name: 1, _id: 0})```  
+output: 
+```{
+        "queryPlanner" : {
+                "plannerVersion" : 1,
+                "namespace" : "frontcamp.restaurants",
+                "indexFilterSet" : false,
+                "parsedQuery" : {
+                        "grades.8.grade" : {
+                                "$eq" : "A"
+                        }
+                },
+                "winningPlan" : {
+                        "stage" : "PROJECTION_SIMPLE",
+                        "transformBy" : {
+                                "name" : 1,
+                                "_id" : 0
+                        },
+                        "inputStage" : {
+                                "stage" : "COLLSCAN",
+                                "filter" : {
+                                        "grades.8.grade" : {
+                                                "$eq" : "A"
+                                        }
+                                },
+                                "direction" : "forward"
+                        }
+                },
+         ...
+}
+```
