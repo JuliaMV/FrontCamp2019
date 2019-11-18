@@ -4,7 +4,9 @@
 
 1. How many records does each airline class have? Use $project to show result as { class:
 "Z", total: 999 }  
+  
 ```db.airlines.aggregate([{$group: {_id: "$class", total: {$sum: 1}}}, {$project: {_id:0, class:"$_id", total:"$total"}}]```  
+  
 output: 
 ```
 { "class" : "Oregon", "total" : 2012 }
@@ -35,13 +37,15 @@ included) with the highest average passengers count? Show result as { "avgPassen
 2312.380, "city" : "Minsk, Belarus" }  
 ```x```  
 output: ```x```  
-db.airlines.aggregate([{$group: {_id: {destCountry: "$destCountry", destCity: "$destCity",carrier: "$carrier"},avgPassangers: {$avg: "$passangers"}}},{$group: {_id: {destCountry: "$_id.destCountry",destCity: "$_id.destCity"},avgPassangers: "$avgPassangers"}},{$sort: {avgPassangers: -1}},{$limit: 3}])
 
 
-1. Which carriers provide flights to Latvia (destCountry)? Show result as one document {
+3. Which carriers provide flights to Latvia (destCountry)? Show result as one document {
 "_id" : "Latvia", "carriers" : [ "carrier1", " carrier2", …] }  
-```x```  
-output: ```x```  
+
+```db.airlines.aggregate([{$match: {"destCountry": " Latvia\""}},{$group:{_id:{destCountry:"$destCountry",carrier:"$carrier"}}},{$group:{_id:"$_id.destCountry",carriers:{$push:"$_id.carrier"}}}])```  
+
+output: ```{ "_id" : " Latvia\"", "carriers" : [ "Uzbekistan Airways", "Blue Jet SP Z o o", "JetClub AG" ] }```  
+
 
 4. What are the carriers which flue the most number of passengers from the United State to either
 Greece, Italy or Spain? Find top 10 carriers, but provide the last 7 carriers (do not include the
