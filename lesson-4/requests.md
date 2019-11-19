@@ -134,20 +134,31 @@ output:
 
 ### Aggregate Enron Collection
 
-Inspect a few of the documents to get a basic understanding of the structure. Enron was an American
-corporation that engaged in a widespread accounting fraud and subsequently failed.In this dataset, each document is an email message. Like all Email messages, there is one sender but
-there can be multiple recipients.
-For this task you will use the aggregation framework to figure out pairs of people that tend to
-communicate a lot. To do this, you will need to unwind the To list for each message.
-This problem is a little tricky because a recipient may appear more than once in the To list for a
-message. You will need to fix that in a stage of the aggregation before doing your grouping and counting
-of (sender, recipient) pairs.
-Which pair of people have the greatest number of messages in the dataset?
-For you reference the number of messages from phillip.love@enron.co to sladanaanna.kulic@enron.com is 144.
-
 ```
+db.messages.aggregate([{$project: {
+...   _id: "$_id",
+...   from: "$headers.From",
+...   to: "$headers.To"
+... }}, {$unwind: "$to"}, {$group: {
+...   _id: "$_id",
+...   from: {
+...     $first: "$from"
+...   },
+...   to: {
+...     $addToSet: "$to"
+...   }
+... }}, {$unwind: "$to"}, {$group: {
+...   _id: {
+...     from: "$from",
+...     to: "$to"
+...   },
+...   total: {
+...     $sum: 1
+...   }
+... }}, {$sort: {
+...   total: -1
+... }}, {$limit: 1}])
 ```
 
 output: 
-```
-```
+```{ "_id" : { "from" : "susan.mara@enron.com", "to" : "jeff.dasovich@enron.com" }, "total" : 750 }```
