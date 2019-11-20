@@ -136,28 +136,28 @@ output:
 
 ```
 db.messages.aggregate([{$project: {
-...   _id: "$_id",
-...   from: "$headers.From",
-...   to: "$headers.To"
-... }}, {$unwind: "$to"}, {$group: {
-...   _id: "$_id",
-...   from: {
-...     $first: "$from"
-...   },
-...   to: {
-...     $addToSet: "$to"
-...   }
-... }}, {$unwind: "$to"}, {$group: {
-...   _id: {
-...     from: "$from",
-...     to: "$to"
-...   },
-...   total: {
-...     $sum: 1
-...   }
-... }}, {$sort: {
-...   total: -1
-... }}, {$limit: 1}])
+  _id: "$_id",
+  from: "$headers.From",
+  to: "$headers.To"
+}}, {$unwind: "$to"}, {$group: {
+  _id: "$_id",
+  from: {
+    $first: "$from"
+  },
+  to: {
+    $addToSet: "$to"
+  }
+}}, {$unwind: "$to"}, {$group: {
+  _id: {
+    from: "$from",
+    to: "$to"
+  },
+  total: {
+    $sum: 1
+  }
+}}, {$sort: {
+  total: -1
+}}, {$limit: 1}])
 ```
 
 output: 
