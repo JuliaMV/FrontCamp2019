@@ -8,7 +8,8 @@
 ```db.airlines.aggregate([{$group: {_id: "$class", total: {$sum: 1}}}, {$project: {_id:0, class:"$_id", total:"$total"}}])```  
   
 output: 
-```{ "class" : "G", "total" : 17499 }
+```
+{ "class" : "G", "total" : 17499 }
 { "class" : "L", "total" : 23123 }
 { "class" : "P", "total" : 5683 }
 { "class" : "F", "total" : 140343 }
