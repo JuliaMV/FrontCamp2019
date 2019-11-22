@@ -118,24 +118,20 @@ db.airlines.aggregate([{$match: {
   totalPassengers: -1
 }}, {$group: {
   _id: "$_id.state",
-  data: {
-  $push: {
-    city: "$_id.city",
-    totalPassengers: "$totalPassengers"
-  } 
+  city: {
+    $first: "$_id.city"
+  },
+  totalPassengers: {
+    $first: "$totalPassengers"
   }
 }}, {$sort: {
   _id: 1
 }}, {$limit: 5}, {$project: {
-  first: {
-    $arrayElemAt: ["$data", 0]
-  }
-}}, {$project: {
   _id: 0,
-  totalPassengers: "$first.totalPassengers",
+  totalPassengers: "$totalPassengers",
   location: {
     state: "$_id",
-    city: "$first.city"
+    city: "$city"
   }
 }}])
 ```  
@@ -146,6 +142,7 @@ output:
 { "totalPassengers" : 13152753, "location" : { "state" : "Arizona", "city" : "Phoenix, AZ" } }
 { "totalPassengers" : 571452, "location" : { "state" : "Arkansas", "city" : "Little Rock, AR" } }
 { "totalPassengers" : 23701556, "location" : { "state" : "California", "city" : "Los Angeles, CA" } }
+
 ```  
 
 ### Aggregate Enron Collection
