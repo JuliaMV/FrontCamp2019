@@ -47,7 +47,7 @@ output:
 ```  
 
 
-1. Which carriers provide flights to Latvia (destCountry)? Show result as one document {
+3. Which carriers provide flights to Latvia (destCountry)? Show result as one document {
 "_id" : "Latvia", "carriers" : [ "carrier1", " carrier2", …] }  
 
 ```db.airlines.aggregate([{$match: {"destCountry": "Latvia"}},{$group:{_id:{destCountry:"$destCountry",carrier:"$carrier"}}},{$group:{_id:"$_id.destCountry",carriers:{$push:"$_id.carrier"}}}])```  
@@ -105,32 +105,47 @@ alphabetically (you should see the city for Alaska, Arizona and etc). Show resul
 "totalPassengers" : 999, "location" : { "state" : "abc", "city" : "xyz"} }  
 ```
 db.airlines.aggregate([{$match: {
-  originCountry: "United States"
+  originCountry: "United States",
 }}, {$group: {
   _id: {
     state: "$originState",
     city: "$originCity"
   },
-  totalPassengers: {
+ totalPassengers: {
     $sum: "$passengers"
   }
 }}, {$sort: {
   totalPassengers: -1
-}}, {$limit: 5}, {$project: {
-  _id: 0,
-  totalPassengers: "$totalPassengers",
-  location: "$_id"
+}}, {$group: {
+  _id: "$_id.state",
+  data: {
+  $push: {
+    city: "$_id.city",
+    totalPassengers: "$totalPassengers"
+  } 
+  }
 }}, {$sort: {
-  "location.state": 1
+  _id: 1
+}}, {$limit: 5}, {$project: {
+  first: {
+    $arrayElemAt: ["$data", 0]
+  }
+}}, {$project: {
+  _id: 0,
+  totalPassengers: "$first.totalPassengers",
+  location: {
+    state: "$_id",
+    city: "$first.city"
+  }
 }}])
 ```  
 output: 
 ```
+{ "totalPassengers" : 760120, "location" : { "state" : "Alabama", "city" : "Birmingham, AL" } }
+{ "totalPassengers" : 1472404, "location" : { "state" : "Alaska", "city" : "Anchorage, AK" } }
+{ "totalPassengers" : 13152753, "location" : { "state" : "Arizona", "city" : "Phoenix, AZ" } }
+{ "totalPassengers" : 571452, "location" : { "state" : "Arkansas", "city" : "Little Rock, AR" } }
 { "totalPassengers" : 23701556, "location" : { "state" : "California", "city" : "Los Angeles, CA" } }
-{ "totalPassengers" : 29416565, "location" : { "state" : "Georgia", "city" : "Atlanta, GA" } }
-{ "totalPassengers" : 28035755, "location" : { "state" : "Illinois", "city" : "Chicago, IL" } }
-{ "totalPassengers" : 25266639, "location" : { "state" : "New York", "city" : "New York, NY" } }
-{ "totalPassengers" : 18408792, "location" : { "state" : "Texas", "city" : "Dallas/Fort Worth, TX" } }
 ```  
 
 ### Aggregate Enron Collection
