@@ -1,0 +1,32 @@
+[
+    {
+        "source":{"id":"bbc-news","name":"BBC News"},
+        "author":null,
+        "title":"Zlatan Ibrahimovic move to Tottenham makes 'no sense' - Jose Mourinho",
+        "description":"Jose Mourinho says signing Zlatan Ibrahimovic for Tottenham \"doesn't make sense\" because he already has the \"best striker in England\" at his disposal in Harry Kane.",
+        "url":"https://www.bbc.co.uk/sport/football/50549364",
+        "urlToImage":"https://ichef.bbci.co.uk/onesport/cps/624/cpsprodpb/41E8/production/_109827861_mourinho_ibrahimovic2_getty.jpg",
+        "publishedAt":"2019-11-25T15:46:45Z",
+        "content":"Harry Kane's goal at West Ham ensured Jose Mourinho got off to a winning start as Tottenham boss\r\nJose Mourinho says signing Zlatan Ibrahimovic for Tottenham \"doesn't make sense\" because he has the \"best striker in England\" in Harry Kane.\r\nIbrahimovic, who pl… [+1600 chars]"
+    },
+    {
+        "source":{"id":"bbc-news","name":"BBC News"},
+        "author":"https://www.facebook.com/bbcnews",
+        "title":"Highland pupils 'suffering negative effects' of ASN cuts",
+        "description":"The EIS union says Highland teachers are reporting problems following a reduction in support staff.",
+        "url":"https://www.bbc.co.uk/news/uk-scotland-highlands-islands-50547085",
+        "urlToImage":"https://ichef.bbci.co.uk/news/1024/branded_news/128C4/production/_109827957_childwriting.jpg",
+        "publishedAt":"2019-11-25T15:36:53Z",
+        "content":"Image copyrightGetty ImagesImage caption\r\n The EIS says the reduction in ASN provision has also affected pupils who do not receive support\r\nCuts in classroom support staff in Highland schools has had a negative impact on pupils, according to Scotland's larges… [+2459 chars]"
+    },
+    {
+        "source":{"id":"bbc-news","name":"BBC News"},
+        "author":"https://www.facebook.com/bbcnews",
+        "title":"South Western Railway strike: 'More than half' of trains to run",
+        "description":"The stoppage will affect South Western Railway services in December and on New Year's Day.",
+        "url":"https://www.bbc.co.uk/news/uk-england-50550347",
+        "urlToImage":"https://ichef.bbci.co.uk/news/1024/branded_news/15B03/production/_104953888_hi050822891.jpg",
+        "publishedAt":"2019-11-25T15:28:53Z",
+        "content":"Image copyrightPAImage caption\r\n The RMT announced drivers and guards would take 27 days of industrial action\r\n\"More than half\" of weekday trains will run during a 27-day rail strike in December, but the last services will be earlier than normal, operators sa… [+1185 chars]"
+    }
+]
