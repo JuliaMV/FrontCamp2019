@@ -1,0 +1,17 @@
+{
+  "name": "lesson-5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "Yuliya Miatlionak",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongose": "0.0.2-security",
+    "pug": "^2.0.4",
+    "winston": "^3.2.1"
+  }
+}
