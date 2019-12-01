@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "mongose": "0.0.2-security",
+    "mongoose": "^5.7.13",
     "pug": "^2.0.4",
     "winston": "^3.2.1"
   }

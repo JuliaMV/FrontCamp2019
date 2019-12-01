@@ -1,6 +1,4 @@
-const { updateNewsFile, readNewsFile } = require('../utils');
-
-let idCounter = 4;
+const { NewsModel } = require('../data/news');
 
 const mainNews = (req, res) => {
   res.render('index', { title: 'Main', message: 'Some news APi'});
@@ -9,7 +7,7 @@ const mainNews = (req, res) => {
 
 const getNews = async (req, res, next) => {
   try {
-    const news = await readNewsFile();
+    const news = await NewsModel.find({}).lean();
     res.json(news);
     res.status(200).end();
   } catch (error) {
@@ -19,10 +17,9 @@ const getNews = async (req, res, next) => {
 
 const getNewsById = async (req, res) => {
   try {
-    const news = await readNewsFile();
     const { params: { id: newsId} } = req;
-    const targetNews = news.filter(({ id }) => id === +newsId);
-    if (targetNews.length !== 0) {
+    const targetNews = await NewsModel.findById(newsId).lean();
+    if (targetNews) {
       res.json(targetNews);
     } else {
       res.render('index', { title: 'News', message: `News with id ${newsId} not found`});
@@ -35,14 +32,7 @@ const getNewsById = async (req, res) => {
 
 postNews = async (req, res) => {
   try {
-    const news = await readNewsFile();
-    const { body: {source, title} } = req;
-    news.push({
-      id: idCounter++,
-      source,
-      title,
-    });
-    await updateNewsFile(news);
+    await NewsModel.create(req.body);
     res.render('index', { title: 'News', message: 'News was updated'});
     res.status(200).end();
   } catch (error) {
@@ -52,22 +42,9 @@ postNews = async (req, res) => {
 
 const putNews = async (req, res) => {
   try {
-    const news = await readNewsFile();
-    const { params: { id: newsId} } = req;
-    const targetNews = news.find(({ id }) => id === +newsId);
-    if (targetNews) {
-      const { body: {source, title} } = req;
-      if (source !== undefined) {
-        targetNews.source = source;
-      }
-      if (title !== undefined) {
-        targetNews.title = title;
-      }
-      await updateNewsFile(news);
-      res.render('index', { title: 'News', message: `News with id ${newsId} was updated`});
-    } else {
-      res.render('index', { title: 'News', message: `News with id ${newsId} not found`});
-    }
+    const { params: { id: newsId}, body } = req;
+    await NewsModel.findByIdAndUpdate(newsId, body);
+    await NewsModel.save();
     res.status(200).end();
   } catch (error) {
     next(error);
@@ -76,11 +53,9 @@ const putNews = async (req, res) => {
 
 const deleteNews = async (req, res) => {
   try {
-    const news = await readNewsFile();
     const { params: { id: newsId} } = req;
-    const updatedNews = news.filter(({ id }) => id !== +newsId);
-    if (updatedNews.length !== 0 && updatedNews.length !== news.length) {
-      await updateNewsFile(updatedNews);
+    const targetNews = await NewsModel.findByIdAndDelete(newsId).lean();
+    if (targetNews) {
       res.render('index', { title: 'News', message: 'News was updated'});
     } else {
       res.render('index', { title: 'News', message: `News with id ${newsId} not found`});
