@@ -1,0 +1,11 @@
+:root {
+  --red: #f65261;
+  --grean: #a1e66f;
+  --dark: #232323;
+  --gray-deep: #424242;
+  --gray-light: #555555;
+}
+
+body {
+  font-family: "Source Sans Pro", "Arial", sans-serif;
+}

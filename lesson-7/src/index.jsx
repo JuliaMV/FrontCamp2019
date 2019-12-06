@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const App = () => (<h1>React here now</h1>);
+import MainPage from './pages/MainPage';
+
+const App = () => (
+  <MainPage />
+);
 
 ReactDOM.render(<App />, document.getElementById('root'));
