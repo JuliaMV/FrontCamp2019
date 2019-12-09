@@ -2,10 +2,30 @@
   --red: #f65261;
   --grean: #a1e66f;
   --dark: #232323;
+  --white: #ffffff;
   --gray-deep: #424242;
   --gray-light: #555555;
 }
 
+html,
 body {
-  font-family: "Source Sans Pro", "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  display: grid;
+  min-height: 100%;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  color: var(--white);
+  background-color: var(--dark);
 }

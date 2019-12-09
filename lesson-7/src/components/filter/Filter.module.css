@@ -1,0 +1,30 @@
+.filters {
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.title {
+  letter-spacing: 0.1px;
+  text-transform: uppercase;
+}
+
+.filtersList {
+  margin: 0 0 0 40px;
+  padding: 0;
+  display: flex;
+  list-style: none;
+}
+
+.filtersItem {
+  margin: 0;
+  padding: 0 10px;
+}
+
+.filtersButton {
+  font: inherit;
+  text-transform: uppercase;
+  color: var(--red);
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
+}

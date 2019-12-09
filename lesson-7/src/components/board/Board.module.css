@@ -1,0 +1,13 @@
+.container {
+  margin: 0 auto;
+  padding: 5px;
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  list-style: none;
+  text-decoration: none;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+}

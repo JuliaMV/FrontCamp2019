@@ -1,3 +1,10 @@
 .logo {
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: none;
   color: var(--red);
+}
+
+.logo span {
+  font-weight: 400;
 }

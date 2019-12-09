@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import MainPage from './pages/MainPage';
 
+import './index.css';
+
 const App = () => (
   <MainPage />
 );

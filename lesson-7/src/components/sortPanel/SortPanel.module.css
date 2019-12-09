@@ -1,0 +1,15 @@
+.container {
+  margin: 0 auto;
+  padding: 5px;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.description {
+  margin: 0;
+  padding: 0;
+}

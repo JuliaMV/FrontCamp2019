@@ -1,10 +1,12 @@
 import React from 'react';
 
+import Logo from '../logo/Logo';
+
+import css from './Footer.module.css';
+
 const Footer = () => (
-  <footer>
-    <a href="./index.html">
-      <img src="" alt="netflixroulette" />
-    </a>
+  <footer className={css.footer}>
+    <Logo />
   </footer>
 );
 
