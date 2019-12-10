@@ -8,8 +8,8 @@ import Footer from '../components/footer/Footer';
 const MainPage = () => (
   <>
     <Header />
-    <div>
-      <SortPanel />
+    <div style={{ position: 'relative' }}>
+      <SortPanel description="7 films found" isFilter />
       <Board />
     </div>
     <Footer />

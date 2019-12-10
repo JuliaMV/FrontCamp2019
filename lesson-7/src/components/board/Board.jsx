@@ -14,6 +14,7 @@ class Board extends React.Component {
   componentDidMount() {
     this.setState({
       films: responce.data.slice(),
+      // films: []
     });
   }
 
@@ -21,11 +22,13 @@ class Board extends React.Component {
     title, release_date, poster_path, genres, id,
   }) => (<Card title={title} date={release_date} img={poster_path} genres={genres} id={id} />);
 
+  noFilms = () => (<li className={css.noFilms}>No films found</li>);
+
   render() {
     const { films } = this.state;
     return (
       <ul className={css.container}>
-        {films.slice(0, 6).map(this.getCards)}
+        {films.length > 0 ? films.slice(0, 6).map(this.getCards) : this.noFilms()}
       </ul>
     );
   }

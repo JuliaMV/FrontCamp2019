@@ -5,9 +5,19 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
+  flex-grow: 1;
   list-style: none;
   text-decoration: none;
   gap: 60px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
+}
+
+.noFilms {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 30px;
+  letter-spacing: 2px;
+  transform: translate(-50%);
 }
