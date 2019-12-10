@@ -1,4 +1,3 @@
-/* eslint-disable react/state-in-constructor */
 /* eslint-disable camelcase */
 import React from 'react';
 

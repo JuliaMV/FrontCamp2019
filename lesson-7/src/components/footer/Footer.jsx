@@ -6,7 +6,9 @@ import css from './Footer.module.css';
 
 const Footer = () => (
   <footer className={css.footer}>
-    <Logo />
+    <div className={css.container}>
+      <Logo />
+    </div>
   </footer>
 );
 

@@ -8,15 +8,17 @@ import css from './Header.module.css';
 const Header = () => (
   <header className={css.header}>
     <div className={css.container}>
-      <h1>
+      <h1 className={css.logoContainer}>
         <Logo />
       </h1>
       <h2 className={css.title}>Find your movie</h2>
-      <form action="" method="get">
-        <input type="text" name="search-input" id="search-input" />
-        <button type="submit">Search</button>
+      <form className={css.searchForm} action="" method="get">
+        <input className={css.searchFormInput} type="text" name="search-input" id="search-input" />
+        <button className={css.searchFormSubmit} type="submit">Search</button>
       </form>
-      <Filter title="search by" fields={['title', 'genre']} align="left" />
+      <div className={css.filtersWrapper}>
+        <Filter title="search by" fields={['title', 'genre']} align="left" />
+      </div>
     </div>
   </header>
 );

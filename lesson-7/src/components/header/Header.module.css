@@ -1,20 +1,70 @@
 .header {
-  background-image: url("https://blenderartists.org/uploads/default/optimized/4X/7/e/2/7e2d7bea4ac21388c4a96e1371f375c4ce00094b_2_690x388.jpg");
+  background-image: url("https://wallpapercave.com/wp/wp3067715.jpg");
   background-repeat: no-repeat;
-  /* background-image: url('https://wallpapercave.com/wp/wp3067715.jpg'); */
-  background-position: center;
+  background-position: center 10%;
   background-size: cover;
 }
 
 .container {
   margin: 0 auto;
-  padding: 5px;
+  padding: 20px 5px 100px;
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
 }
 
+.logoContainer {
+  margin: 0;
+  padding: 0;
+}
+
 .title {
-  letter-spacing: 0.2px;
+  margin: 0;
+  padding: 60px 60px 40px;
+  font-size: 36px;
+  font-weight: 400;
+  letter-spacing: 3px;
   text-transform: uppercase;
+}
+
+.searchForm {
+  margin: 0;
+  padding: 0 60px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchForm > * {
+  box-sizing: border-box;
+  height: 50px;
+  border-color: transparent;
+  border-radius: 4px;
+}
+
+.searchFormInput {
+  margin-right: 15px;
+  padding: 0 10px;
+  flex-grow: 3;
+  font-size: 16px;
+  color: var(--white);
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.searchFormSubmit {
+  height: inherit;
+  flex-grow: 1;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  background-color: var(--red);
+  cursor: pointer;
+}
+
+.searchFormSubmit:hover {
+  filter: brightness(85%);
+}
+
+.filtersWrapper {
+  padding: 0 60px;
 }

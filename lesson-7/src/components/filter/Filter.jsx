@@ -19,12 +19,6 @@ const Filter = ({ title, fields }) => (
 Filter.propTypes = {
   title: PropTypes.string.isRequired,
   fields: PropTypes.arrayOf(PropTypes.string).isRequired,
-  // align: PropTypes.string,
 };
-
-// Filter.defaultProps = {
-//   align: 'left',
-// };
-
 
 export default Filter;
