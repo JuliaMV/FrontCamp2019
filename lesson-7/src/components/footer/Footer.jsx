@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Logo from '../logo/Logo';
+import Logo from 'components/logo/Logo';
 
 import css from './Footer.module.css';
 

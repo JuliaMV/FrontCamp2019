@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Filter from '../filter/Filter';
+import Filter from 'components/filter/Filter';
 import css from './SortPanel.module.css';
 
 const SortPanel = () => (

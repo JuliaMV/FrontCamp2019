@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Logo from '../logo/Logo';
-import Filter from '../filter/Filter';
+import Logo from 'components/logo/Logo';
+import Filter from 'components/filter/Filter';
 
 import css from './Header.module.css';
 
@@ -17,7 +17,7 @@ const Header = () => (
         <button className={css.searchFormSubmit} type="submit">Search</button>
       </form>
       <div className={css.filtersWrapper}>
-        <Filter title="search by" fields={['title', 'genre']} align="left" />
+        <Filter title="search by" fields={['title', 'genre']} />
       </div>
     </div>
   </header>

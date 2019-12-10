@@ -7,6 +7,11 @@ module.exports = {
     path: path.join(__dirname, '/dist'),
     filename: 'index-bundle.js',
   },
+  resolve: {
+    alias: {
+      components: path.resolve(__dirname, 'src/components/'),
+    },
+  },
   module: {
     rules: [
       {
@@ -33,7 +38,9 @@ module.exports = {
             loader: require.resolve('css-loader'),
             options: {
               importLoaders: 1,
-              modules: true,
+              modules: {
+                localIdentName: '[local]--[hash:base64:5]',
+              },
             },
           },
         ],
