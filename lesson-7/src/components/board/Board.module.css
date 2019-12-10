@@ -1,13 +1,13 @@
 .container {
   margin: 0 auto;
-  padding: 5px;
+  padding: 40px 5px;
   display: grid;
   box-sizing: border-box;
   width: 100%;
   max-width: 1200px;
   list-style: none;
   text-decoration: none;
-  gap: 40px;
+  gap: 60px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
 }

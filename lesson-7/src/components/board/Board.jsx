@@ -18,14 +18,14 @@ class Board extends React.Component {
   }
 
   getCards = ({
-    title, release_date, poster_path, genres,
-  }) => (<Card title={title} date={release_date} img={poster_path} genres={genres} />);
+    title, release_date, poster_path, genres, id,
+  }) => (<Card title={title} date={release_date} img={poster_path} genres={genres} id={id} />);
 
   render() {
     const { films } = this.state;
     return (
       <ul className={css.container}>
-        {films.map(this.getCards)}
+        {films.slice(0, 6).map(this.getCards)}
       </ul>
     );
   }
