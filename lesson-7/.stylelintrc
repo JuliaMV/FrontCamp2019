@@ -10,7 +10,8 @@
         "**/*.tsx",
         "**/*.svg",
         "**/*.png",
-        "**/*.jpeg"
+        "**/*.jpeg",
+        "**/*.jpg"
     ],
     "rules": {
         "string-quotes": "double",

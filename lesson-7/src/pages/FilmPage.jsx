@@ -3,7 +3,7 @@ import React from 'react';
 import Film from 'components/film/Film';
 import Board from 'components/board/Board';
 import Footer from 'components/footer/Footer';
-import SortPanel from '../components/sortPanel/SortPanel';
+import SortPanel from 'components/sortPanel/SortPanel';
 
 const FilmPage = () => (
   <>

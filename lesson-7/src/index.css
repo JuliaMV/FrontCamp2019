@@ -1,10 +1,11 @@
 :root {
   --red: #f65261;
-  --grean: #a1e66f;
+  --green: #a1e66f;
   --dark: #232323;
   --white: #ffffff;
   --gray-deep: #424242;
   --gray-light: #555555;
+  --smoky: #dddddd;
 }
 
 html,

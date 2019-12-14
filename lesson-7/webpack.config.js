@@ -10,6 +10,7 @@ module.exports = {
   resolve: {
     alias: {
       components: path.resolve(__dirname, 'src/components/'),
+      src: path.resolve(__dirname, 'src/'),
     },
   },
   module: {
@@ -24,7 +25,14 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
-
+      {
+        test: /\.(png|svg|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
       {
         test: /\.css$/,
         exclude: /\.module.css$/,

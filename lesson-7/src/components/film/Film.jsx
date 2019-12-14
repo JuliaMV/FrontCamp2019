@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Logo from 'components/logo/Logo';
+import SearchIcon from 'components/searchIcon/searchIcon';
 
 import css from './Film.module.css';
 
@@ -13,7 +14,7 @@ const Film = ({
     <div className={css.container}>
       <header className={css.header}>
         <Logo />
-        searchBtn
+        <SearchIcon />
       </header>
       <main className={css.content}>
         <img className={css.poster} src={img} alt="description" />
@@ -22,18 +23,16 @@ const Film = ({
             <h2 className={css.title}>{title}</h2>
             <span className={css.votes}>{vote_average}</span>
           </div>
-          <span className={css.genres}>{genres.join(' ')}</span>
+          <p className={css.genres}>{genres.join(' ')}</p>
           <div className={css.meta}>
-            <div className={css.year}>
-              <span>{new Date(date).getFullYear()}</span>
-              <span>yaer</span>
-            </div>
-            <div className={css.time}>
-              <span>{runtime}</span>
-              <span>min</span>
-            </div>
+            <span className={css.year}>
+              {new Date(date).getFullYear()}
+            </span>
+            <span className={css.time}>
+              {`${runtime} min`}
+            </span>
           </div>
-          <p>{overview}</p>
+          <p className={css.description}>{overview}</p>
         </div>
       </main>
     </div>
