@@ -1,0 +1,11 @@
+.svg {
+  width: 30px;
+  height: 30px;
+  transition: all 0.2s ease-in-out;
+  fill: var(--red);
+}
+
+.svg:hover {
+  cursor: pointer;
+  fill: var(--white);
+}
