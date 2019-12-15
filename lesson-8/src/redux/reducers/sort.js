@@ -1,4 +1,4 @@
-import { GET_SORT, SET_SORT } from 'redux/actions/sort';
+import { GET_SORT, SET_SORT } from 'src/redux/actions/sort';
 
 const initialState = {
   sort: 'release_date',

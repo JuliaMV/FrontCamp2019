@@ -1,4 +1,4 @@
-import { GET_FILTER, SET_FILTER } from 'redux/actions/filter';
+import { GET_FILTER, SET_FILTER } from 'src/redux/actions/filter';
 
 const initialState = {
   filter: 'title',
