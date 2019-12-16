@@ -6,7 +6,7 @@ import constants from 'src/constants';
 
 import { setFilter } from 'src/redux/actions/filter';
 import { setSort } from 'src/redux/actions/sort';
-import { setFilms } from 'src/redux/actions/films';
+import { setFilms, setAmount } from 'src/redux/actions/films';
 
 import Board from 'components/board/Board';
 import Header from 'components/header/Нeader';
@@ -15,6 +15,7 @@ import Footer from 'components/footer/Footer';
 
 const mapStateToProps = (state) => ({
   films: state.films.films,
+  amount: state.films.amount,
   filter: state.filter.filter,
   sort: state.sort.sort,
 });
@@ -24,6 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
   setFilterAction: (filter) => dispatch(setFilter(filter)),
   setSortAction: (sort) => dispatch(setSort(sort)),
   setFilmsAction: (films) => dispatch(setFilms(films)),
+  setAmountAction: (value) => dispatch(setAmount(value)),
 });
 
 
@@ -43,12 +45,15 @@ class MainPage extends React.PureComponent {
     this.fetchFilms(searchText);
   }
 
-  fetchFilms = (userInput) => {
-    const { filter, sort, setFilmsAction } = this.props;
-    const url = `${constants.API}/movies?search=${userInput}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}`;
+  fetchFilms = (searchText) => {
+    const {
+      filter, sort, setFilmsAction, setAmountAction,
+    } = this.props;
+    const url = `${constants.API}/movies?search=${searchText}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}&sortOrder=desc`;
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
+        setAmountAction(data.total);
         setFilmsAction(data.data);
       })
       .catch((error) => {
@@ -57,7 +62,9 @@ class MainPage extends React.PureComponent {
   }
 
   render() {
-    const { films, filter, sort } = this.props;
+    const {
+      films, filter, sort, amount,
+    } = this.props;
 
     return (
       <>
@@ -68,7 +75,7 @@ class MainPage extends React.PureComponent {
         />
         <div style={{ position: 'relative' }}>
           <SortPanel
-            description={`${films.length} films found`}
+            description={`${amount} films found`}
             isFilter
             activeFilter={sort}
             filterHandler={this.sortHandler}

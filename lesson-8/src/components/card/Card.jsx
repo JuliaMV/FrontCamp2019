@@ -7,7 +7,7 @@ const Card = ({
   img, title, genres, date, id,
 }) => (
   <li className={css.card} key={id}>
-    <a href={`/${id}`}>
+    <a href={`/film/${id}`}>
       <img className={css.poster} src={img} alt="description" />
     </a>
     <div className={css.info}>
