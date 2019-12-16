@@ -1,4 +1,4 @@
-import { GET_FILTER, SET_FILTER } from 'src/redux/actions/filter';
+import { SET_FILTER } from 'src/redux/actions/filter';
 
 const initialState = {
   filter: 'title',
@@ -11,8 +11,8 @@ export default (state = initialState, action) => {
         ...state,
         filter: action.payload,
       };
-    case GET_FILTER:
-      return state;
+    // case GET_FILTER:
+    //   return state;
     default:
       return state;
   }

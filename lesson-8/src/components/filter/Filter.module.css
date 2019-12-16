@@ -39,6 +39,14 @@
   background-color: var(--red);
 }
 
-.filtersButton.active {
+.filtersButtonActive {
+  padding: 8px 20px;
+  font: inherit;
+
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
   background-color: var(--red);
+  border: transparent;
+  cursor: pointer;
 }

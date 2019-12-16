@@ -30,6 +30,7 @@ class Board extends React.Component {
       img={poster_path}
       genres={genres}
       id={id}
+      key={id}
     />
   );
 

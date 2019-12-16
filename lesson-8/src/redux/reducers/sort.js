@@ -1,7 +1,7 @@
-import { GET_SORT, SET_SORT } from 'src/redux/actions/sort';
+import { SET_SORT } from 'src/redux/actions/sort';
 
 const initialState = {
-  sort: 'release_date',
+  sort: 'release date',
 };
 
 export default (state = initialState, action) => {
@@ -9,10 +9,10 @@ export default (state = initialState, action) => {
     case SET_SORT:
       return {
         ...state,
-        SORT: action.payload,
+        sort: action.payload,
       };
-    case GET_SORT:
-      return state;
+    // case GET_SORT:
+    //   return state;
     default:
       return state;
   }

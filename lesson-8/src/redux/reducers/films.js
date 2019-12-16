@@ -1,4 +1,4 @@
-import { GET_FILMS } from 'src/redux/actions/films';
+import { SET_FILMS } from 'src/redux/actions/films';
 
 const initialState = {
   films: [
@@ -181,7 +181,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_FILMS:
+    case SET_FILMS:
       return {
         ...state,
         films: action.payload.data,

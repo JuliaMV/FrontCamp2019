@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 import Logo from 'components/logo/Logo';
@@ -5,7 +6,7 @@ import Filter from 'components/filter/Filter';
 
 import css from './Header.module.css';
 
-const Header = () => (
+const Header = ({ activeFilter, filterHandler }) => (
   <header className={css.header}>
     <div className={css.container}>
       <h1 className={css.logoContainer}>
@@ -17,7 +18,7 @@ const Header = () => (
         <button className={css.searchFormSubmit} type="submit">Search</button>
       </form>
       <div className={css.filtersWrapper}>
-        <Filter title="search by" fields={['title', 'genre']} />
+        <Filter title="search by" fields={['title', 'genre']} activeFilter={activeFilter} filterHandler={filterHandler} />
       </div>
     </div>
   </header>

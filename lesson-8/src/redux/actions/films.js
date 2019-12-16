@@ -1,6 +1,6 @@
-export const GET_FILMS = 'GET_FILMS';
+export const SET_FILMS = 'SET_FILMS';
 
-export const getFilms = (data) => ({
-  type: GET_FILMS,
+export const setFilms = (data) => ({
+  type: SET_FILMS,
   payload: data,
 });
