@@ -2,6 +2,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import constants from 'src/constants';
+
 import { setFilter } from 'src/redux/actions/filter';
 import { setSort } from 'src/redux/actions/sort';
 import { setFilms } from 'src/redux/actions/films';
@@ -26,10 +28,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 class MainPage extends React.PureComponent {
-  componentDidMount() {
-    //fetch will be here
-  }
-
   filterHandler = (value) => {
     const { setFilterAction } = this.props;
     setFilterAction(value);
@@ -41,20 +39,40 @@ class MainPage extends React.PureComponent {
   }
 
   filmsHandler = (value) => {
-    const { setFilmsAction } = this.props;
-    setFilmsAction(value);
+    const searchText = encodeURIComponent(value).replace(/%20/g, '+');
+    this.fetchFilms(searchText);
   }
 
+  fetchFilms = (userInput) => {
+    const { filter, sort, setFilmsAction } = this.props;
+    const url = `${constants.API}/movies?search=${userInput}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}`;
+    fetch(url)
+      .then((resp) => resp.json())
+      .then((data) => {
+        setFilmsAction(data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
     const { films, filter, sort } = this.props;
-    console.log(this.props);
 
     return (
       <>
-        <Header activeFilter={filter} filterHandler={this.filterHandler} />
+        <Header
+          activeFilter={filter}
+          filterHandler={this.filterHandler}
+          filmsHandler={this.filmsHandler}
+        />
         <div style={{ position: 'relative' }}>
-          <SortPanel description={`${films.length} films found`} isFilter activeFilter={sort} filterHandler={this.sortHandler} />
+          <SortPanel
+            description={`${films.length} films found`}
+            isFilter
+            activeFilter={sort}
+            filterHandler={this.sortHandler}
+          />
           <Board films={films} />
         </div>
         <Footer />

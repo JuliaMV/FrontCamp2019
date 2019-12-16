@@ -1,5 +1,5 @@
 const contants = {
-  API: 'https://reactjs-cdp.herokuapp.com/ ',  
+  API: 'https://reactjs-cdp.herokuapp.com',
   filmsPerScreen: 6,
 };
 

@@ -12,7 +12,7 @@ const SortPanel = (props) => {
   if (isFilter) {
     filter = <Filter title="sort by" fields={['release date', 'rating']} activeFilter={activeFilter} filterHandler={filterHandler} />;
   }
-  console.log(props);
+
   return (
     <div className={css.wrapper}>
       <div className={css.container}>
