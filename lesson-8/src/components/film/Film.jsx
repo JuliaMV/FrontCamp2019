@@ -26,7 +26,7 @@ const Film = ({
             <h2 className={css.title}>{title}</h2>
             <span className={css.votes}>{vote_average}</span>
           </div>
-          <p className={css.genres}>{genres.join(' ')}</p>
+          <p className={css.genres}>{genres.join(' / ')}</p>
           <div className={css.meta}>
             <span className={css.year}>
               {new Date(release_date).getFullYear()}

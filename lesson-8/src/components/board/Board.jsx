@@ -1,26 +1,11 @@
 /* eslint-disable camelcase */
 import React from 'react';
 
-// import constants from 'src/constants';
 
 import Card from 'components/card/Card';
-import responce from '../../data/movies';
-
-
 import css from './Board.module.css';
 
 class Board extends React.Component {
-  // state = {
-  //   films: [],
-  // };
-
-  // componentDidMount() {
-  //   this.setState({
-  //     films: responce.data.slice(),
-  //     // films: []
-  //   });
-  // }
-
   getCards = ({
     title, release_date, poster_path, genres, id,
   }) => (

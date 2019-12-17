@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { setFilm, setFilms } from 'src/redux/actions/film';
+import { setFilm } from 'src/redux/actions/film';
+import { setFilms } from 'src/redux/actions/films';
 
 import Film from 'components/film/Film';
 import Board from 'components/board/Board';
@@ -13,58 +14,52 @@ import constants from 'src/constants';
 
 const mapStateToProps = (state) => ({
   film: state.film.film,
+  sort: state.sort.sort,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setFilmAction: (id, isLoadFilm, callback) => {
-    if (isLoadFilm) {
-      return;
-    }
+  setFilmAction: (id, sort, callback) => {
     const url = `${constants.API}/movies/${id}`;
     fetch(url)
       .then((resp) => resp.json())
-      .then((data) => {
-        dispatch(setFilm(data));
-        callback(true);
+      .then((film) => {
+        const filter = 'genres';
+        const urlFilms = `${constants.API}/movies?search=${film.genres.join('&')}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}&sortOrder=desc`;
+        return fetch(urlFilms)
+          .then((resp) => resp.json())
+          .then((films) => {
+            callback(true);
+            dispatch([setFilm(film), setFilms(films.data)]);
+          });
       })
       .catch((error) => {
         console.log(error);
       });
   },
-  setFilmsAction: (genres, callback) => {
-    const filter = 'genres';
-    const url = `${constants.API}/movies?search=${genres.pop()}&searchBy=${filter}`;
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setFilms(data.data.slice(0, 6));
-        callback(true);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  },
 });
 
-const FilmPage = (props) => {
-  const { film, setFilmAction } = props;
-  const [isLoadFilm, updateLoadFilm] = useState(false);
+
+const FilmPage = React.memo((props) => {
+  const { film, setFilmAction, sort } = props;
   const { id } = useParams();
 
-  setFilmAction(id, isLoadFilm, updateLoadFilm);
+  const [isLoad, updateLoad] = useState(false);
+  console.log(isLoad);
 
-  // isLoadFilm && setFilmsAction(film.genres, isLoad, updateLoad);
+  setFilmAction(id, sort, updateLoad);
 
-  return isLoadFilm ? (
+  // isLoadFilm && setFilmsAction(film.genres, sort, updateLoad);
+
+  return isLoad ? (
     <>
       <Film {...film} />
       <div style={{ position: 'relative' }}>
-        <SortPanel description={`Films by ${film.genres.pop()}`} />
+        <SortPanel description={`Films by ${film.genres.join(' / ')}`} />
         <Board films={[]} />
       </div>
       <Footer />
     </>
   ) : null;
-};
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilmPage);
