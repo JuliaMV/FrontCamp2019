@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import css from './Logo.module.css';
 
 const Logo = () => (
-  <a className={css.logo} href="./index.html">
+  <Link className={css.logo} to="/">
     netlix<span>roulette</span>
-  </a>
+  </Link>
 );
 
 export default Logo;

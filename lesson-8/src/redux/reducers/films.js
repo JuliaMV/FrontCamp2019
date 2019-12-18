@@ -1,4 +1,4 @@
-import { SET_FILMS, SET_AMOUNT } from 'src/redux/actions/films';
+import { SET_FILMS, SET_AMOUNT, CLEAR_FILMS, CLEAR_AMOUNT } from 'src/redux/actions/films';
 
 const initialState = {
   films: [],
@@ -16,6 +16,16 @@ export default (state = initialState, action) => {
       return {
         ...state,
         amount: action.payload,
+      };
+    case CLEAR_FILMS:
+      return {
+        ...state,
+        films: [],
+      };
+    case CLEAR_AMOUNT:
+      return {
+        ...state,
+        amount: 0,
       };
     default:
       return state;

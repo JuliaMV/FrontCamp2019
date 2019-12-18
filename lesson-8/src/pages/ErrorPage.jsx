@@ -11,7 +11,7 @@ const ErrorPage = ({ title }) => (
   <>
     <Header />
     <div style={{ position: 'relative' }}>
-      <SortPanel description="7 films found" isFilter />
+      <SortPanel description="" isFilter />
       <ErrorTitle title={title} />
     </div>
     <Footer />

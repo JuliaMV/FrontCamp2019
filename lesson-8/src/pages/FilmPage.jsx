@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { setFilm } from 'src/redux/actions/film';
-import { setFilms } from 'src/redux/actions/films';
+import { setFilm, clearFilm } from 'src/redux/actions/film';
+import { setFilms, clearFilms } from 'src/redux/actions/films';
 
 import Film from 'components/film/Film';
 import Board from 'components/board/Board';
@@ -13,7 +13,8 @@ import SortPanel from 'components/sortPanel/SortPanel';
 import constants from 'src/constants';
 
 const mapStateToProps = (state) => ({
-  film: state.film.film,
+  film: state.film.film[0],
+  films: state.films.films,
   sort: state.sort.sort,
 });
 
@@ -36,30 +37,35 @@ const mapDispatchToProps = (dispatch) => ({
         console.log(error);
       });
   },
+
+  clearResults: () => {
+    dispatch(clearFilm());
+  },
 });
 
 
-const FilmPage = React.memo((props) => {
-  const { film, setFilmAction, sort } = props;
+const FilmPage = (props) => {
+  const { film, sort, films, setFilmAction, clearResults } = props;
   const { id } = useParams();
 
   const [isLoad, updateLoad] = useState(false);
-  console.log(isLoad);
+
+  // useEffect(() => {
+  //   return clearResults();
+  // });
 
   setFilmAction(id, sort, updateLoad);
-
-  // isLoadFilm && setFilmsAction(film.genres, sort, updateLoad);
 
   return isLoad ? (
     <>
       <Film {...film} />
       <div style={{ position: 'relative' }}>
         <SortPanel description={`Films by ${film.genres.join(' / ')}`} />
-        <Board films={[]} />
+        <Board films={films} />
       </div>
       <Footer />
     </>
-  ) : null;
-});
+  ) : 'loading....';
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(FilmPage);
