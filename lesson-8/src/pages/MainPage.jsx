@@ -1,69 +1,67 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
-import constants from 'src/constants';
+// import { mainPageLimit } from 'src/config';
 
-import { setFilter } from 'src/redux/actions/filter';
-import { setSort } from 'src/redux/actions/sort';
-import { setFilms, setAmount } from 'src/redux/actions/films';
+import {
+  updateSort, updateFilter, updateAmount, loadFilms,
+} from 'src/redux/actions/mainPage';
 
 import Board from 'components/board/Board';
 import Header from 'components/header/Нeader';
 import SortPanel from 'components/sortPanel/SortPanel';
 import Footer from 'components/footer/Footer';
 
-const mapStateToProps = (state) => ({
-  films: state.films.films,
-  amount: state.films.amount,
-  filter: state.filter.filter,
-  sort: state.sort.sort,
+const videoLimit = 6;
+
+const mapStateToProps = (state, ownProps) => ({
+  sort: state.mainPage.sort,
+  filter: state.mainPage.filter,
+  filmsData: state.mainPage.filmsData,
+  amount: state.mainPage.amount,
+  limit: state.mainPage.limit,
+  isLoading: state.mainPage.isLoading,
+  ...ownProps,
 });
 
 
-const mapDispatchToProps = (dispatch) => ({
-  setFilterAction: (filter) => dispatch(setFilter(filter)),
-  setSortAction: (sort) => dispatch(setSort(sort)),
-  setFilmsAction: (films) => dispatch(setFilms(films)),
-  setAmountAction: (value) => dispatch(setAmount(value)),
-});
+const mapDispatchToProps = {
+  updateSort, updateFilter, updateAmount, loadFilms,
+};
 
 
 class MainPage extends React.PureComponent {
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   filterHandler = (value) => {
-    const { setFilterAction } = this.props;
-    setFilterAction(value);
+    const { updateFilter } = this.props;
+    updateFilter(value);
   }
 
   sortHandler = (value) => {
-    const { setSortAction } = this.props;
-    setSortAction(value);
+    const { updateSort } = this.props;
+    updateSort(value);
   }
 
   filmsHandler = (value) => {
-    const searchText = encodeURIComponent(value).replace(/%20/g, '+');
-    this.fetchFilms(searchText);
-  }
-
-  fetchFilms = (searchText) => {
     const {
-      filter, sort, setFilmsAction, setAmountAction,
+      loadFilms, sort, filter, history, limit,
     } = this.props;
-    const url = `${constants.API}/movies?search=${searchText}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}&sortOrder=desc`;
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((data) => {
-        setAmountAction(data.total);
-        setFilmsAction(data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // const input = encodeURIComponent(value).replace(/%20/g, '+');
+    const searchQuery = `search=${value}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}&sortOrder=desc&limit=${limit}`;
+    history.push((`/search/${searchQuery}`));
+
+    loadFilms(searchQuery);
   }
 
   render() {
     const {
-      films, filter, sort, amount,
+      filmsData, filter, sort, amount,
     } = this.props;
 
     return (
@@ -80,7 +78,7 @@ class MainPage extends React.PureComponent {
             activeFilter={sort}
             filterHandler={this.sortHandler}
           />
-          <Board films={films} />
+          <Board films={filmsData} />
         </div>
         <Footer />
       </>
@@ -88,4 +86,4 @@ class MainPage extends React.PureComponent {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));

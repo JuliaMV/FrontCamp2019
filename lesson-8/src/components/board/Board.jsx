@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 import React from 'react';
 
@@ -22,7 +23,7 @@ class Board extends React.Component {
   noFilms = () => (<li className={css.noFilms}>No films found</li>);
 
   render() {
-    const { films } = this.props
+    const { films } = this.props;
     const content = films.length > 0 ? films.map(this.getCards)
       : this.noFilms();
 

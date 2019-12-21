@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 import css from './Filter.module.css';
 
-const getFields = (fields, activeFilter, filterHandler) => {
-  return fields.map((field) => (
-    <li key={field} className={css.filtersItem}>
-      <button type="button" className={field === activeFilter ? css.filtersButtonActive : css.filtersButton} onClick={() => filterHandler(field)}>{field}</button>
-    </li>
-  ));
-};
+const getFields = (fields, activeFilter, filterHandler) => fields.map((field) => (
+  <li key={field} className={css.filtersItem}>
+    <button type="button" className={field === activeFilter ? css.filtersButtonActive : css.filtersButton} onClick={() => filterHandler(field)}>{field}</button>
+  </li>
+));
 
 const Filter = (props) => {
   const {

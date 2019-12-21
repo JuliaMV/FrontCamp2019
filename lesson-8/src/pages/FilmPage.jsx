@@ -1,71 +1,60 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-shadow */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
+import React from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
-import { setFilm, clearFilm } from 'src/redux/actions/film';
-import { setFilms, clearFilms } from 'src/redux/actions/films';
+import { loadFilmDescription } from 'src/redux/actions/filmPage';
 
 import Film from 'components/film/Film';
 import Board from 'components/board/Board';
 import Footer from 'components/footer/Footer';
 import SortPanel from 'components/sortPanel/SortPanel';
 
-import constants from 'src/constants';
 
-const mapStateToProps = (state) => ({
-  film: state.film.film[0],
-  films: state.films.films,
-  sort: state.sort.sort,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  setFilmAction: (id, sort, callback) => {
-    const url = `${constants.API}/movies/${id}`;
-    fetch(url)
-      .then((resp) => resp.json())
-      .then((film) => {
-        const filter = 'genres';
-        const urlFilms = `${constants.API}/movies?search=${film.genres.join('&')}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}&sortOrder=desc`;
-        return fetch(urlFilms)
-          .then((resp) => resp.json())
-          .then((films) => {
-            callback(true);
-            dispatch([setFilm(film), setFilms(films.data)]);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  },
-
-  clearResults: () => {
-    dispatch(clearFilm());
-  },
-});
-
-
-const FilmPage = (props) => {
-  const { film, sort, films, setFilmAction, clearResults } = props;
-  const { id } = useParams();
-
-  const [isLoad, updateLoad] = useState(false);
-
-  // useEffect(() => {
-  //   return clearResults();
-  // });
-
-  setFilmAction(id, sort, updateLoad);
-
-  return isLoad ? (
-    <>
-      <Film {...film} />
-      <div style={{ position: 'relative' }}>
-        <SortPanel description={`Films by ${film.genres.join(' / ')}`} />
-        <Board films={films} />
-      </div>
-      <Footer />
-    </>
-  ) : 'loading....';
+const mapStateToProps = (state, ownProps) => {
+  console.log('state', state);
+  console.log('ownProps', ownProps);
+  return {
+    filmDescription: state.filmPage.filmDescription,
+    suggestedFilms: state.filmPage.suggestedFilms,
+    isLoading: state.filmPage.isLoading,
+    sort: state.mainPage.sort,
+    filter: state.mainPage.filter,
+    id: ownProps.match.params.id,
+  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FilmPage);
+const mapDispatchToProps = {
+  loadFilmDescription,
+};
+
+
+class FilmPage extends React.PureComponent {
+  componentDidMount() {
+    console.log('this.props', this.props);
+    const {
+      id, loadFilmDescription, filter, sort,
+    } = this.props;
+    loadFilmDescription({ id, filter, sort });
+  }
+
+  render() {
+    const { filmDescription, suggestedFilms, isLoading } = this.props;
+    // return null;
+
+    return isLoading ? '<p>loading</p>' : (
+      <>
+        <Film {...filmDescription} />
+        <div style={{ position: 'relative' }}>
+          <SortPanel description={`Films by ${filmDescription.genres.join(' / ')}`} />
+          <Board films={suggestedFilms} />
+        </div>
+        <Footer />
+      </>
+    );
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FilmPage));

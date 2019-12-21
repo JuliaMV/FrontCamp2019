@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux';
-import films from './films';
-import filter from './filter';
-import sort from './sort';
-import film from './film';
+import { routerReducer } from 'react-router-redux';
+
+import filmPage from './filmPage';
+import mainPage from './mainPage';
 
 export default combineReducers({
-  films,
-  filter,
-  sort,
-  film
+  routing: routerReducer,
+  mainPage,
+  filmPage,
 });
