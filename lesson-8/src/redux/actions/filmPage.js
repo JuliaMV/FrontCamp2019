@@ -26,8 +26,8 @@ export const updateSuggestedFilms = (data) => ({
   payload: data,
 });
 
-export const loadSuggestedFilms = (({ genres, filter, sort }) => (dispatch) => {
-  fetchFilmsByGenre({ genres, filter, sort })
+export const loadSuggestedFilms = (({ genres, sort }) => (dispatch) => {
+  fetchFilmsByGenre({ genres, sort })
     .then((data) => {
       dispatch(updateSuggestedFilms(data.data));
       dispatch(endLoading());

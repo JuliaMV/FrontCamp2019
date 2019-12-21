@@ -14,8 +14,7 @@ import Board from 'components/board/Board';
 import Header from 'components/header/Нeader';
 import SortPanel from 'components/sortPanel/SortPanel';
 import Footer from 'components/footer/Footer';
-
-const videoLimit = 6;
+import Loader from 'components/loader/Loader';
 
 const mapStateToProps = (state, ownProps) => ({
   sort: state.mainPage.sort,
@@ -52,7 +51,6 @@ class MainPage extends React.PureComponent {
     const {
       loadFilms, sort, filter, history, limit,
     } = this.props;
-    // const input = encodeURIComponent(value).replace(/%20/g, '+');
     const searchQuery = `search=${value}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}&sortOrder=desc&limit=${limit}`;
     history.push((`/search/${searchQuery}`));
 
@@ -61,7 +59,7 @@ class MainPage extends React.PureComponent {
 
   render() {
     const {
-      filmsData, filter, sort, amount,
+      filmsData, filter, sort, amount, isLoading,
     } = this.props;
 
     return (
@@ -81,6 +79,7 @@ class MainPage extends React.PureComponent {
           <Board films={filmsData} />
         </div>
         <Footer />
+        { isLoading && <Loader />}
       </>
     );
   }

@@ -12,7 +12,7 @@ export function fetchFilms(searchQuery) {
     .then((response) => response.json());
 }
 
-export function fetchFilmsByGenre({ genres, filter, sort }) {
-  return fetch(`${API_URL}/movies?search=${genres.join('&')}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}&sortOrder=desc&limit=${filmPageLimit}`)
+export function fetchFilmsByGenre({ genres, sort }) {
+  return fetch(`${API_URL}/movies?search=${genres.join('&')}&searchBy=genre&sortBy=${sort.split(' ').join('_')}&sortOrder=desc&limit=${filmPageLimit}`)
     .then((response) => response.json());
 }
