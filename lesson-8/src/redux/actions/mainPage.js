@@ -1,13 +1,13 @@
-import { fetchFilms } from 'src/config';
+import { API_URL } from 'src/config';
 
 export const UPDATE_SORT = 'UPDATE_SORT';
 export const UPDATE_FILTER = 'UPDATE_FILTER';
 export const UPDATE_AMOUNT = 'UPDATE_AMOUNT';
+export const UPDATE_LIMIT = 'UPDATE_LIMIT';
 export const START_LOADING = 'START_LOADING';
 export const END_LOADING = 'END_LOADING';
 export const UPDATE_FILMS = 'UPDATE_FILMS';
 export const LOAD_FILMS = 'LOAD_FILMS';
-export const UPDATE_LIMIT = 'UPDATE_LIMIT';
 
 export const updateSort = (sort) => ({
   type: UPDATE_SORT,
@@ -42,10 +42,10 @@ export const updateFilms = (data) => ({
   payload: data,
 });
 
-
 export const loadFilms = ((searchQuery) => (dispatch) => {
   dispatch(startLoading());
-  fetchFilms(searchQuery)
+  return fetch(`${API_URL}/movies?${searchQuery}`)
+    .then((response) => response.json())
     .then((data) => {
       dispatch(updateAmount(data.total));
       dispatch(updateFilms(data.data));

@@ -23,7 +23,7 @@ const App = () => (
       <ErrorBoundary fallback={<ErrorPage title="Something went wrong" />}>
         <Switch>
           <Route exact path="/" render={() => <MainPage />} />
-          <Route exact path="/search/:text&searchBy=:searchBy&sortBy=:sortBye&sortOrder=desc&limit=:limit" render={() => <MainPage />} />
+          <Route exact path="/search/:text&searchBy=:searchBy&sortBy=:sortBy&sortOrder=desc&limit=:limit" render={() => <MainPage />} />
           <Route exact path="/film/:id" render={() => <FilmPage />} />
           <Route path="*" render={() => <ErrorPage title="404 Error. Page not found" />} />
         </Switch>

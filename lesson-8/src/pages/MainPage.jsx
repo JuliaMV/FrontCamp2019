@@ -1,10 +1,7 @@
 /* eslint-disable no-shadow */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
-// import { mainPageLimit } from 'src/config';
 
 import {
   updateSort, updateFilter, updateAmount, loadFilms,
@@ -30,9 +27,12 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = {
   updateSort, updateFilter, updateAmount, loadFilms,
 };
-
-
 class MainPage extends React.PureComponent {
+  constructor() {
+    super();
+    console.log('constructor');
+  }
+
   componentDidMount() {
     console.log(this.props);
   }
