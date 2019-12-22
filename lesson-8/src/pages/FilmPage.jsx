@@ -1,10 +1,9 @@
 /* eslint-disable react/no-did-update-set-state */
 /* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-shadow */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { loadFilmDescription } from 'src/redux/actions/filmPage';
 
@@ -72,5 +71,26 @@ class FilmPage extends React.PureComponent {
     );
   }
 }
+
+FilmPage.propTypes = {
+  filmDescription: PropTypes.shape(
+    {
+      title: PropTypes.string.isRequired,
+      genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+      poster_path: PropTypes.string.isRequired,
+      release_date: PropTypes.string.isRequired,
+      vote_average: PropTypes.number.isRequired,
+      runtime: PropTypes.number.isRequired,
+      overview: PropTypes.string.isRequired,
+    },
+  ).isRequired,
+  suggestedFilms: PropTypes.arrayOf(PropTypes.object).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  filter: PropTypes.string.isRequired,
+  sort: PropTypes.string.isRequired,
+  loadFilmDescription: PropTypes.bool.isRequired,
+  id: PropTypes.string.isRequired,
+};
+
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(FilmPage));

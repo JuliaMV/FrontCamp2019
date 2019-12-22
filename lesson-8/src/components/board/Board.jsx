@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 import React from 'react';
-
+import PropTypes from 'prop-types';
 
 import Card from 'components/card/Card';
+
 import css from './Board.module.css';
 
 class Board extends React.Component {
@@ -33,6 +33,10 @@ class Board extends React.Component {
       </ul>
     );
   }
+}
+
+Board.propTypes = {
+  films: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 

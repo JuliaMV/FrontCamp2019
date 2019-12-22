@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import {
   updateSort, updateFilter, updateAmount, loadFilms,
@@ -28,13 +29,13 @@ const mapDispatchToProps = {
   updateSort, updateFilter, updateAmount, loadFilms,
 };
 class MainPage extends React.PureComponent {
-  constructor() {
-    super();
-    console.log('constructor');
-  }
+  // constructor() {
+  //   super();
+  //   console.log('constructor');
+  // }
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   filterHandler = (value) => {
@@ -84,5 +85,20 @@ class MainPage extends React.PureComponent {
     );
   }
 }
+
+MainPage.propTypes = {
+  updateFilter: PropTypes.func.isRequired,
+  loadFilms: PropTypes.func.isRequired,
+  updateSort: PropTypes.func.isRequired,
+  sort: PropTypes.string.isRequired,
+  filter: PropTypes.string.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  limit: PropTypes.number.isRequired,
+  amount: PropTypes.number.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));
