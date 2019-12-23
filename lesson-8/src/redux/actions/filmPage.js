@@ -38,8 +38,8 @@ export const loadFilmDescription = (({ id, filter, sort }) => (dispatch) => {
   return fetch(`${API_URL}/movies/${id}`)
     .then((response) => response.json())
     .then((data) => {
-      dispatch(loadSuggestedFilms({ genres: data.genres, filter, sort }));
       dispatch(updateFilmDescription(data));
+      dispatch(loadSuggestedFilms({ genres: data.genres, filter, sort }));
     })
     .catch((error) => console.log(error));
 });

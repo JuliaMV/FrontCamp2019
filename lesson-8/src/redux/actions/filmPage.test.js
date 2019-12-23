@@ -67,23 +67,6 @@ describe('async actions for FilmPage', () => {
     fetchMock.restore();
   });
 
-  it('creates all necessari actions when fetching film description has been done', () => {
-    fetchMock.getOnce(`${API_URL}/movies/123`, {
-      body: { title: 'title', genres: ['comedy'] },
-      headers: { 'content-type': 'application/json' },
-    });
-    const expectedActions = [
-      { type: START_LOADING_FILM },
-      // { type: UPDATE_FILM_DESCRIPTION, payload: { title: 'title', genres: ['comedy'] } },
-    ];
-    const store = mockStore({ filmPage: {} });
-    return store.dispatch(loadFilmDescription({ id: 123, filter: 'title', sort: 'raiting' }))
-      .then(() => {
-        // console.log(store.getActions());
-        expect(store.getActions()).toEqual(expectedActions);
-      });
-  });
-
   it('creates all necessari actions when fetching suggested films has been done', () => {
     fetchMock.getOnce(`${API_URL}/movies?search=comedy&searchBy=genres&sortBy=raiting&sortOrder=desc&limit=9`, {
       body: { data: [{ title: 'title', genres: ['comedy'] }] },
@@ -96,6 +79,24 @@ describe('async actions for FilmPage', () => {
     const store = mockStore({ filmPage: {} });
     return store.dispatch(loadSuggestedFilms({ genres: ['comedy'], sort: 'raiting' }))
       .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+  });
+
+  
+  it('creates all necessari actions when fetching film description has been done', () => {
+    fetchMock.getOnce(`${API_URL}/movies/123`, {
+      body: { title: 'title', genres: ['comedy'] },
+      headers: { 'content-type': 'application/json' },
+    });
+    const expectedActions = [
+      { type: START_LOADING_FILM },
+      { type: UPDATE_FILM_DESCRIPTION, payload: { title: 'title', genres: ['comedy'] } },
+    ];
+    const store = mockStore({ filmPage: {} });
+    return store.dispatch(loadFilmDescription({ id: 123, filter: 'title', sort: 'raiting' }))
+      .then(() => {
+        console.log(store.getActions());
         expect(store.getActions()).toEqual(expectedActions);
       });
   });

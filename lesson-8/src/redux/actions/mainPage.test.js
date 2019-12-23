@@ -120,6 +120,3 @@ describe('async actions for MainPage', () => {
       });
   });
 });
-
-
-// https://reactjs-cdp.herokuapp.com/movies?search=comedy&searchBy=genres&sortBy=raiting&sortOrder=desc&limit=9

@@ -29,13 +29,14 @@ const mapDispatchToProps = {
   updateSort, updateFilter, updateAmount, loadFilms,
 };
 class MainPage extends React.PureComponent {
-  // constructor() {
-  //   super();
-  //   console.log('constructor');
-  // }
 
   componentDidMount() {
-    // console.log(this.props);
+    const { match: { params }, filmsData, loadFilms } = this.props
+    if (params && filmsData.length === 0) {
+      const { value, filter, sort, limit} = params
+      const searchQuery = `search=${value}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}&sortOrder=desc&limit=${limit}`;
+      loadFilms(searchQuery);
+    }
   }
 
   filterHandler = (value) => {
