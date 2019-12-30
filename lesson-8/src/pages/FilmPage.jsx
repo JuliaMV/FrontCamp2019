@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react/no-did-update-set-state */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';

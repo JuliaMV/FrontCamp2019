@@ -10,5 +10,6 @@
   "rules": {
     "react/state-in-constructor": [0],
     "import/no-unresolved": [0],
+    "linebreak-style": "off"
   }
 }

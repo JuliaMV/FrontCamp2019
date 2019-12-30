@@ -37,7 +37,7 @@ class Board extends React.Component {
 
 Board.propTypes = {
   films: PropTypes.arrayOf(PropTypes.object).isRequired,
-}
+};
 
 
 export default Board;

@@ -29,11 +29,12 @@ const mapDispatchToProps = {
   updateSort, updateFilter, updateAmount, loadFilms,
 };
 class MainPage extends React.PureComponent {
-
   componentDidMount() {
-    const { match: { params }, filmsData, loadFilms } = this.props
-    if (params && filmsData.length === 0) {
-      const { value, filter, sort, limit} = params
+    const { match: { params }, filmsData, loadFilms } = this.props;
+    const {
+      value, filter, sort, limit,
+    } = params;
+    if (value && filter && sort && limit && filmsData.length === 0) {
       const searchQuery = `search=${value}&searchBy=${filter}&sortBy=${sort.split(' ').join('_')}&sortOrder=desc&limit=${limit}`;
       loadFilms(searchQuery);
     }
@@ -100,6 +101,9 @@ MainPage.propTypes = {
   amount: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
   filmsData: PropTypes.arrayOf(PropTypes.object).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
+  }).isRequired,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MainPage));

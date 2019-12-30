@@ -83,7 +83,6 @@ describe('async actions for FilmPage', () => {
       });
   });
 
-  
   it('creates all necessari actions when fetching film description has been done', () => {
     fetchMock.getOnce(`${API_URL}/movies/123`, {
       body: { title: 'title', genres: ['comedy'] },
