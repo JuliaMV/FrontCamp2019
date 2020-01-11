@@ -1,10 +1,15 @@
 <nav>
   <div class="nav-wrapper container">
-    <a href="/" class="brand-logo">Aggregator Logo</a>
+    <a [routerLink]="['/']" class="brand-logo">Aggregator Logo</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="/news">News</a></li>
-      <li><a href="/contacts">Contacts</a></li>
-      <li><a href="/login">Login</a></li>
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a [routerLink]="['/']">Main</a>
+      </li>
+      <li routerLinkActive="active">
+        <a [routerLink]="['/contacts']">Contacts</a>
+      </li>
+      <li><button class="btn">Login</button></li>
+      <li><button class="btn">Login</button></li>
     </ul>
   </div>
 </nav>
