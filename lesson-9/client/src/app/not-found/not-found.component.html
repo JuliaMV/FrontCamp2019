@@ -1,4 +1,4 @@
 <div class="container">
-  <h2>404 Page not found</h2>
-  <p>Go to <a [routerLink]="['/']">Main</a> page</p>
+  <h2>{{title}}</h2>
+  <p>{{text.start}}<a [routerLink]="redirectLink.path">{{redirectLink.text}}</a>{{text.end}}</p>
 </div>

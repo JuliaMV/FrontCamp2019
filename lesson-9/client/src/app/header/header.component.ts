@@ -6,6 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  logoText = 'Aggregator Logo';
+  homeLinkText = 'Main';
+  menuLinks = [
+    { text: 'Contacts', path: ['/contacts'] },
+  ];
+  buttons = [
+    { text: 'Login' },
+    { text: 'Logout' },
+  ];
 
   constructor() { }
 
