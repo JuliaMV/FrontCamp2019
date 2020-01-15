@@ -1,51 +1,19 @@
 <div class="container">
   <app-title></app-title>
-  <div class="row col s12">
-    <div class="col s4">
-      <label>Sourve Select</label>
-      <select class="browser-default">
-        <option value="" disabled selected>Choose your source</option>
-        <option value="1">Local</option>
-        <option value="2">BBC</option>
-        <option value="3">EuroNews</option>
-      </select>
-    </div>
-    <div class="input-field col s4">
-      <input placeholder="Something" id="first_name" type="text" class="validate">
-      <label for="first_name">Search by keyword</label>
-    </div>
-    <div class="col s2">
-      <p>
-        <label>
-          <input type="checkbox" checked="checked" />
-          <span>Created by me</span>
-        </label>
-      </p>
-    </div>
-    <div class="col s2 button-container">
-      <a class="waves-effect waves-light btn">create</a>
-    </div>
+  <div class="controls row">
+    <app-select></app-select>
+    <app-search></app-search>
+    <app-created-checkbox></app-created-checkbox>
+    <app-create-btn></app-create-btn>
   </div>
 
-  
+
   <ul>
-    <li class="row">
-      <div class="col s6 offset-s3">
-        <div class="card horizontal">
-          <div class="card-image">
-            <img src="https://via.placeholder.com/150">
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.</p>
-            </div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </li>
+    <app-news-card></app-news-card>
+    <app-news-card></app-news-card>
+    <app-news-card></app-news-card>
+    <app-news-card></app-news-card>
+    <app-load-more-btn></app-load-more-btn>
   </ul>
 </div>
 

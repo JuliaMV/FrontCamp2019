@@ -9,6 +9,12 @@ import { MainComponent } from './main/main.component';
 import { TitleComponent } from './title/title.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ContactsComponent } from './contacts/contacts.component';
+import { SelectComponent } from './select/select.component';
+import { SearchComponent } from './search/search.component';
+import { CreatedCheckboxComponent } from './created-checkbox/created-checkbox.component';
+import { CreateBtnComponent } from './create-btn/create-btn.component';
+import { NewsCardComponent } from './news-card/news-card.component';
+import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +24,13 @@ import { ContactsComponent } from './contacts/contacts.component';
     MainComponent,
     TitleComponent,
     NotFoundComponent,
-    ContactsComponent
+    ContactsComponent,
+    SelectComponent,
+    SearchComponent,
+    CreatedCheckboxComponent,
+    CreateBtnComponent,
+    NewsCardComponent,
+    LoadMoreBtnComponent
   ],
   imports: [
     BrowserModule,
