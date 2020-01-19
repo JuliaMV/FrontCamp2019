@@ -1,9 +1,16 @@
 export interface INews {
-  // _id: string;
+  source: { id: string, name: string };
+  author: string;
   title: string;
-  // author: string;
   description: string;
-  // content: string;
+  url: string;
   urlToImage: string;
-  date: Date;
+  content: string;
+  publishedAt: string;
+}
+
+export interface IEvrethingResponse {
+  status: string;
+  totalResults: number;
+  articles: INews[];
 }

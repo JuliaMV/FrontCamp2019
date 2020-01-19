@@ -16,6 +16,7 @@ import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { NewsCardComponent } from './news-card/news-card.component';
 import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

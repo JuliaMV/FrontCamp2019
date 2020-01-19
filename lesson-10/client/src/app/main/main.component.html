@@ -8,8 +8,25 @@
   </div>
 
 
-  <ul>
+  <ul *ngIf="!loading; else loader">
     <app-news-card *ngFor="let news of newsList" [news]="news"></app-news-card>
   </ul>
+
+  <ng-template #loader>
+    <div class="loader-wrapper center-align ">
+      <div class="preloader-wrapper big active ">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
 </div>
 
