@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-created-checkbox',
@@ -7,11 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreatedCheckboxComponent implements OnInit {
   label = 'Created by me';
-  isChecked = false;
+
+  @Input() isChecked: boolean;
+  @Output() onClickCreateBtn: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+  clickBtn() {
+    this.onClickCreateBtn.emit();
   }
 
 }

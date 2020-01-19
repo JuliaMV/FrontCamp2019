@@ -15,4 +15,8 @@ export class SearchComponent implements OnInit {
 
   }
 
+  onInput(event) {
+    console.log((event.target as HTMLInputElement).value);
+  }
+
 }

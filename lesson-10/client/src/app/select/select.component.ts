@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-select',
@@ -13,6 +13,8 @@ export class SelectComponent implements OnInit {
     { text: 'EuroNews'},
     { text: 'TuT.by'},
   ];
+
+  @Input() isDisabled: boolean;
 
   constructor() { }
 

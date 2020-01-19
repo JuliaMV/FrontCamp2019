@@ -13,4 +13,8 @@ export class LoadMoreBtnComponent implements OnInit {
   ngOnInit() {
   }
 
+  onLoadMore() {
+    console.log('load more');
+  }
+
 }

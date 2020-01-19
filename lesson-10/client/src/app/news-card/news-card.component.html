@@ -1,20 +1,20 @@
 <li class="row">
-  <div class="col s6 offset-s3">
+  <div class="col s8 offset-s2">
     <div class="card horizontal">
       <div class="card-image">
-        <img src="https://via.placeholder.com/200x270">
+        <img [src]="news.urlToImage">
       </div>
       <div class="card-stacked">
         <div class="card-content">
           <div class="card-data">
             <div class="card-info">
-              <span class="news-date">1/15/2020, 9:12:26 AM</span>
-              <h4>News title</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet scelerisque nisi, non aliquam elit. Aenean laoreet arcu vitae.</p>
+              <span class="news-date">{{news.date | date: "short" }}</span>
+              <h4>{{news.title}}</h4>
+              <p>{{news.description}}</p>
             </div>
             <div class="card-edit">
-              <a class="btn" href="#">edit</a>
-              <a class="btn" href="#">delete</a>
+              <a [routerLink]="['/edit']" class="btn" href="#">edit</a>
+              <a class="btn" href="#" (click)="onDelete()">delete</a>
             </div>
           </div>
         </div>

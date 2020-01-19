@@ -1,8 +1,9 @@
 <div class="col s2">
   <div class="checkbox-wrapper">
     <label>
-      <input type="checkbox" [checked]="isChecked" />
+      <input type="checkbox" [checked]="isChecked" (click)="clickBtn()"/>
       <span>{{label}}</span>
     </label>
   </div>
 </div>
+

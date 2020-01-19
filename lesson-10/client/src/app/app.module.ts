@@ -15,6 +15,7 @@ import { CreatedCheckboxComponent } from './created-checkbox/created-checkbox.co
 import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { NewsCardComponent } from './news-card/news-card.component';
 import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

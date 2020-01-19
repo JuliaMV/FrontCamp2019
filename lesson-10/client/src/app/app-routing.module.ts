@@ -9,6 +9,12 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'contacts', component: ContactsComponent },
   { path: '404', component: NotFoundComponent },
+  // { path: 'edit', component: EditComponent },
+  // { path: 'create', component: CreateNewsComponent },
+  // { path: 'create', component: NewsPageComponent },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'logout', component: Logout
+  //  [lfsdComponent },
   { path: '**', redirectTo: '/404' }
 ];
 
