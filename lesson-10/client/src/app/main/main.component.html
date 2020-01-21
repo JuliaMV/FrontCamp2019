@@ -10,6 +10,7 @@
 
   <ul *ngIf="!loading; else loader">
     <app-news-card *ngFor="let news of newsList" [news]="news"></app-news-card>
+    <app-load-more-btn *ngIf="newsList.length"></app-load-more-btn>
   </ul>
 
   <ng-template #loader>

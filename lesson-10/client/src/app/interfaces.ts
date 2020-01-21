@@ -9,8 +9,23 @@ export interface INews {
   publishedAt: string;
 }
 
-export interface IEvrethingResponse {
+export interface INewsResponse {
   status: string;
   totalResults: number;
   articles: INews[];
+}
+
+export interface ISource {
+  id: string;
+  name: string;
+  // description: string;
+  // url: string;
+  // category: string;
+  // language: string;
+  // country: string;
+}
+
+export interface ISourcesResponce {
+  status: string;
+  sources: ISource[];
 }

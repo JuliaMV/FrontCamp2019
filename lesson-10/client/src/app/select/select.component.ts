@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ISource, ISourcesResponce} from '../interfaces';
+import {NewsApiService} from '../services/news-api.service';
 
 @Component({
   selector: 'app-select',
@@ -7,18 +9,25 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class SelectComponent implements OnInit {
   label = 'Select source';
-  options = [
-    { text: 'Local'},
-    { text: 'BBC'},
-    { text: 'EuroNews'},
-    { text: 'TuT.by'},
-  ];
+  local = { name: 'Local News', id: 'local-news' };
+  sources: ISource[];
 
   @Input() isDisabled: boolean;
 
-  constructor() { }
+  constructor(private newsApiService: NewsApiService) {
+  }
 
   ngOnInit() {
+    this.newsApiService.fetchSources()
+      .subscribe((response: ISourcesResponce) => {
+        this.sources = [this.local, ...response.sources];
+      });
+  }
+
+  selectHandler = (event) => {
+    const source = (event.target as HTMLSelectElement).value;
+    this.newsApiService.setSelectedSource(source);
+    this.newsApiService.fetchNews(source);
   }
 
 }
