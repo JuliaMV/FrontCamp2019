@@ -1,5 +1,5 @@
 <div class="container">
-  <app-title></app-title>
+  <app-title>{{selectedSource}}</app-title>
   <div class="controls row">
     <app-select [isDisabled]="isOwnNews"></app-select>
     <app-search></app-search>
@@ -10,7 +10,7 @@
 
   <ul *ngIf="!loading; else loader">
     <app-news-card *ngFor="let news of newsList" [news]="news"></app-news-card>
-    <app-load-more-btn *ngIf="newsList.length"></app-load-more-btn>
+    <app-load-more-btn *ngIf="newsList.length" (click)="loadMore()"></app-load-more-btn>
   </ul>
 
   <ng-template #loader>

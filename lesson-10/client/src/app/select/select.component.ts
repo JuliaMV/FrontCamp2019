@@ -9,7 +9,6 @@ import {NewsApiService} from '../services/news-api.service';
 })
 export class SelectComponent implements OnInit {
   label = 'Select source';
-  local = { name: 'Local News', id: 'local-news' };
   sources: ISource[];
 
   @Input() isDisabled: boolean;
@@ -18,16 +17,17 @@ export class SelectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newsApiService.fetchSources()
-      .subscribe((response: ISourcesResponce) => {
-        this.sources = [this.local, ...response.sources];
+    this.newsApiService.fetchSources();
+    this.newsApiService.updateSourcesList
+      .subscribe((sources: ISource[]) => {
+        this.sources = sources;
       });
   }
 
   selectHandler = (event) => {
     const source = (event.target as HTMLSelectElement).value;
     this.newsApiService.setSelectedSource(source);
-    this.newsApiService.fetchNews(source);
+    this.newsApiService.fetchNews();
   }
 
 }

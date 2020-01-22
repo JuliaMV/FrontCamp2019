@@ -21,6 +21,11 @@ export class MainComponent implements OnInit {
     this.newsApiService.updateNewsList.subscribe((news: INews[]) => {
       this.newsList = news;
     });
+
+  }
+
+  loadMore() {
+    this.newsApiService.fetchNews();
   }
 
 }

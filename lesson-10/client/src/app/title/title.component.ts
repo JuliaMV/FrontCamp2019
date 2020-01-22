@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {NewsApiService} from '../services/news-api.service';
+import {ISource} from '../interfaces';
 
 @Component({
   selector: 'app-title',
@@ -6,11 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./title.component.scss']
 })
 export class TitleComponent implements OnInit {
-  title = 'Source Name'
+  title: string;
 
-  constructor() { }
+  constructor(private  newsApiService: NewsApiService) { }
 
   ngOnInit() {
+    this.newsApiService.updateSelectedSource.subscribe((source: ISource) => {
+      this.title = source.name;
+    });
   }
 
 }
