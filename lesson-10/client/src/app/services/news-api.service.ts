@@ -47,7 +47,6 @@ export class NewsApiService {
       this.news = [];
       this.page = 1;
       this.selectedSource = this.sources.find(source => source.id === id);
-      console.log(this.selectedSource);
       this.updateSelectedSource.emit(this.selectedSource);
     }
   }

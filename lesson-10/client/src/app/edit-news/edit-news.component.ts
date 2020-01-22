@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-create-news',
-  templateUrl: './create-news.component.html',
-  styleUrls: ['./create-news.component.scss']
+  templateUrl: './edit-news.component.html',
+  styleUrls: ['./edit-news.component.scss']
 })
-export class CreateNewsComponent implements OnInit {
-  title = 'Create';
+export class EditNewsComponent implements OnInit {
+  title = 'Edit';
   date =  new Date();
 
   constructor() { }
