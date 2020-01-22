@@ -13,9 +13,6 @@ export class TitleComponent implements OnInit {
   constructor(private  newsApiService: NewsApiService) { }
 
   ngOnInit() {
-    // this.newsApiService.updateSelectedSource.subscribe((source: ISource) => {
-    //   this.title = source.name;
-    // });
   }
 
 }

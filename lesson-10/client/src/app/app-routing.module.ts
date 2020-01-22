@@ -6,6 +6,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MainComponent } from './main/main.component';
 import {CreateNewsComponent} from './create-news/create-news.component';
 import {EditNewsComponent} from './edit-news/edit-news.component';
+import {ArticleComponent} from './article/article.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: '404', component: NotFoundComponent },
   { path: 'create', component: CreateNewsComponent },
   { path: 'edit', component: EditNewsComponent },
+  { path: 'acticle', component: ArticleComponent },
   // { path: 'login', component: LoginComponent },
   // { path: 'logout', component: Logout
   { path: '**', redirectTo: '/404' }

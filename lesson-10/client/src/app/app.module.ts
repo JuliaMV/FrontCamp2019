@@ -19,6 +19,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { CreateNewsComponent } from './create-news/create-news.component';
 import {EditNewsComponent} from './edit-news/edit-news.component';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {EditNewsComponent} from './edit-news/edit-news.component';
     NewsCardComponent,
     LoadMoreBtnComponent,
     CreateNewsComponent,
-    EditNewsComponent
+    EditNewsComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,

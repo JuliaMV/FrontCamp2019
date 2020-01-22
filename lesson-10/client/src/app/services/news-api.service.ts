@@ -13,7 +13,9 @@ export class NewsApiService {
   selectedSource: ISource = { id: '', name: ''};
   sources: ISource[];
   local = { name: 'Local News', id: 'local-news' };
+  selectedNews: INews;
   updateNewsList: EventEmitter<INews[]> = new EventEmitter();
+  updateSelectedNews: EventEmitter<INews> = new EventEmitter();
   updateSelectedSource: EventEmitter<ISource> = new EventEmitter();
   updateSourcesList: EventEmitter<ISource[]> = new EventEmitter();
 
@@ -49,5 +51,11 @@ export class NewsApiService {
       this.selectedSource = this.sources.find(source => source.id === id);
       this.updateSelectedSource.emit(this.selectedSource);
     }
+  }
+
+  setSelectedNews = (title: string) => {
+    this.selectedNews = this.news.find(news => news.title === title);
+    this.updateSelectedNews.emit(this.selectedNews);
+
   }
 }
