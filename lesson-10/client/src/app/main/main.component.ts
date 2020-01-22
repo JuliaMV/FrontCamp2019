@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import {INews} from '../interfaces';
+import {INews, ISource} from '../interfaces';
 import {NewsApiService} from '../services/news-api.service';
 
 
@@ -13,6 +13,7 @@ export class MainComponent implements OnInit {
   isOwnNews = false;
   newsList: INews[] = [];
   loading = false;
+  title: string;
 
   constructor( private newsApiService: NewsApiService) { }
 
@@ -20,6 +21,9 @@ export class MainComponent implements OnInit {
     // this.loading = true;
     this.newsApiService.updateNewsList.subscribe((news: INews[]) => {
       this.newsList = news;
+    });
+    this.newsApiService.updateSelectedSource.subscribe((source: ISource) => {
+      this.title = source.name;
     });
 
   }

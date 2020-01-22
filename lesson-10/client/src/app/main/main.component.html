@@ -1,6 +1,6 @@
 <div class="container">
-  <app-title></app-title>
-  <div class="controls row">
+  <app-title [title]="title"></app-title>
+  <div class="controls">
     <app-select [isDisabled]="isOwnNews"></app-select>
     <app-search></app-search>
     <app-created-checkbox [isChecked]="isOwnNews" (onClickCreateBtn)="isOwnNews = !isOwnNews"></app-created-checkbox>

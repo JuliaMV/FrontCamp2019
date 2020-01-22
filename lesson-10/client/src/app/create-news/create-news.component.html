@@ -1,5 +1,6 @@
-<div class="container create-page">
-  <div class="row">
+<div class="container ">
+  <app-title [title]="title"></app-title>
+  <div class="row create-form">
     <form class="col s12">
       <div class="row">
         <div class="input-field col s6">
@@ -18,7 +19,7 @@
         </div>
         <div class="input-field col s6">
           <input id="date" type="text" class="validate" [placeholder]="date | date: 'short'" disabled="disabled">
-          <label for="date">Date</label>
+          <label class="active" for="date">Date</label>
         </div>
       </div>
       <div class="row">
@@ -31,7 +32,7 @@
         <div class="col s6">
           <div class="input-field">
             <input id="author" type="text" class="validate" placeholder="Author name will be here" disabled="disabled">
-            <label for="author">Author</label>
+            <label class="active" for="author">Author</label>
           </div>
           <div class="input-field">
             <input id="source_url" type="text" class="validate">
