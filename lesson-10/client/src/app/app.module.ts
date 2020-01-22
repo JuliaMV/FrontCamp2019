@@ -17,6 +17,7 @@ import { NewsCardComponent } from './news-card/news-card.component';
 import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { CreateNewsComponent } from './create-news/create-news.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {HttpClientModule} from '@angular/common/http';
     CreatedCheckboxComponent,
     CreateBtnComponent,
     NewsCardComponent,
-    LoadMoreBtnComponent
+    LoadMoreBtnComponent,
+    CreateNewsComponent
   ],
   imports: [
     BrowserModule,
