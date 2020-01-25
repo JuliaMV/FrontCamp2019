@@ -1,0 +1,11 @@
+<div class="container">
+  <app-title [title]="news.title"></app-title>
+  <img [src]="news.urlToImage" alt="">
+  <p>{{news.content}}</p>
+  <span>{{news.publishedAt}}</span>
+  <span>{{news.author}}</span>
+  <div class="card-edit">
+    <a [routerLink]="['/edit']" class="btn" href="#">edit</a>
+    <a class="btn" href="#" (click)="onDelete()">delete</a>
+  </div>
+</div>

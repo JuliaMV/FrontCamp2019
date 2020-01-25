@@ -1,0 +1,33 @@
+<div class="container">
+  <app-title [title]="title"></app-title>
+  <div class="controls">
+    <app-select [isDisabled]="isOwnNews"></app-select>
+    <app-search></app-search>
+    <app-created-checkbox [isChecked]="isOwnNews" (onClickCreateBtn)="isOwnNews = !isOwnNews"></app-created-checkbox>
+    <app-create-btn></app-create-btn>
+  </div>
+
+
+  <ul *ngIf="!loading; else loader">
+    <app-news-card *ngFor="let news of newsList" [news]="news"></app-news-card>
+    <app-load-more-btn *ngIf="newsList.length" (click)="loadMore()"></app-load-more-btn>
+  </ul>
+
+  <ng-template #loader>
+    <div class="loader-wrapper center-align ">
+      <div class="preloader-wrapper big active ">
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+
+</div>
+

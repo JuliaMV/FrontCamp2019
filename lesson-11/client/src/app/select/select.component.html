@@ -1,0 +1,7 @@
+<div>
+  <label>{{label}}</label>
+  <select class="browser-default" (change)="selectHandler($event)" [disabled]="isDisabled">
+    <option value="" disabled selected>Choose your source</option>
+    <option *ngFor="let source of sources" [value]="source.id">{{source.name}}</option>
+  </select>
+</div>

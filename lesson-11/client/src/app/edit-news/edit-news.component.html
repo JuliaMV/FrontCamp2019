@@ -1,0 +1,52 @@
+<div class="container ">
+  <app-title [title]="title"></app-title>
+  <div class="row create-form">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="heading" type="text" class="validate">
+          <label for="heading">Heading</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="image_url" type="text" class="validate">
+          <label for="image_url">Image URL</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="description" type="text" class="validate">
+          <label for="description">Short description</label>
+        </div>
+        <div class="input-field col s6">
+          <input id="date" type="text" class="validate" [placeholder]="date | date: 'short'" disabled="disabled">
+          <label class="active" for="date">Date</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s6">
+          <div class="input-field">
+            <textarea id="content" class="materialize-textarea"></textarea>
+            <label for="content">Content</label>
+          </div>
+        </div>
+        <div class="col s6">
+          <div class="input-field">
+            <input id="author" type="text" class="validate" placeholder="Author name will be here" disabled="disabled">
+            <label class="active" for="author">Author</label>
+          </div>
+          <div class="input-field">
+            <input id="source_url" type="text" class="validate">
+            <label for="source_url">Source URl</label>
+          </div>
+          <div class="container-btn">
+            <a class="waves-effect waves-light btn" (click)="onSave()">Save</a>
+            <a class="waves-effect waves-light btn" (click)="onCancel()">Cancel</a>
+          </div>
+        </div>
+
+      </div>
+
+
+    </form>
+  </div>
+</div>

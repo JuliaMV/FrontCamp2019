@@ -1,0 +1,18 @@
+<nav>
+  <div class="nav-wrapper container">
+    <a [routerLink]="['/']" class="brand-logo">{{logoText}}</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        <a [routerLink]="['/']">{{homeLinkText}}</a>
+      </li>
+      <li *ngFor="let link of menuLinks" routerLinkActive="active">
+        <a [routerLink]="link.path">{{link.text}}</a>
+      </li>
+
+      <li *ngFor="let button of buttons">
+        <button class="btn">{{button.text}}</button>
+      </li>
+
+    </ul>
+  </div>
+</nav>
