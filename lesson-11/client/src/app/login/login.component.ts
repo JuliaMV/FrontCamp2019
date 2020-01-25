@@ -15,4 +15,8 @@ export class LoginComponent implements OnInit {
   loginHandler = () => {
     console.log('login');
   }
+
+  registerHandler = () => {
+    console.log('register');
+  }
 }

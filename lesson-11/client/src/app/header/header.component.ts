@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -6,19 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isLogin: boolean = true;
   logoText = 'Aggregator Logo';
   homeLinkText = 'Main';
   menuLinks = [
     { text: 'Contacts', path: ['/contacts'] },
   ];
-  buttons = [
-    { text: 'Login' },
-    { text: 'Logout' },
-  ];
 
-  constructor() { }
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.updateLogin.subscribe((isLogin: boolean) => {
+      this.isLogin = isLogin;
+    });
   }
 
 }

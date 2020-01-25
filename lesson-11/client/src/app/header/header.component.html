@@ -9,8 +9,11 @@
         <a [routerLink]="link.path">{{link.text}}</a>
       </li>
 
-      <li *ngFor="let button of buttons">
-        <button class="btn">{{button.text}}</button>
+      <li>
+        <button *ngIf="isLogin; else logout" class="btn">Logout</button>
+        <ng-template  #logout>
+          <button class="btn">Login</button>
+        </ng-template>
       </li>
 
     </ul>
