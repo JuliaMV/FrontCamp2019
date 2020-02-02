@@ -53,9 +53,4 @@ export class NewsApiService {
     }
   }
 
-  setSelectedNews = (title: string) => {
-    this.selectedNews = this.news.find(news => news.title === title);
-    this.updateSelectedNews.emit(this.selectedNews);
-
-  }
 }

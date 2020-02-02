@@ -8,7 +8,7 @@
         <div class="card-content">
           <div class="card-data">
             <div class="card-info">
-              <span class="news-date">{{news.date | date: "short" }}</span>
+              <span class="news-date">{{news.publishedAt | date: "short" }}</span>
               <h4>{{news.title | titlecase}}</h4>
               <p>{{news.description}}</p>
             </div>
@@ -19,7 +19,7 @@
           </div>
         </div>
         <div class="card-action">
-          <a href="#">Read more...</a>
+          <a [href]="news.url">Read more...</a>
         </div>
       </div>
     </div>

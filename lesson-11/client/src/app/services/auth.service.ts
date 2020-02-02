@@ -3,13 +3,17 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
 const TOKEN = 'TOKEN';
+const NAME = 'NAME';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   isLogin = false;
+  name: string | null = null;
   updateLogin: EventEmitter<boolean> = new EventEmitter();
+  updateName: EventEmitter<string> = new EventEmitter();
+
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -23,13 +27,24 @@ export class AuthService {
     localStorage.setItem(TOKEN, token);
   }
 
+  setName = (name: string): void => {
+    localStorage.setItem(NAME, name);
+  }
+
+  checkName = () => {
+    this.name = localStorage.getItem(NAME);
+    this.updateName.emit(this.name);
+  }
 
   isLogged = () => {
     if (localStorage.getItem(TOKEN) !== null) {
       this.isLogin = true;
       this.updateLogin.emit(this.isLogin);
+      this.name = localStorage.getItem(NAME);
+      this.updateName.emit(this.name);
     }
   }
+
 
   register = (form) => {
     this.http
@@ -49,6 +64,9 @@ export class AuthService {
       .subscribe((resp: { token?: string, message?: string }) => {
         this.isLogin = true;
         this.updateLogin.emit(this.isLogin);
+        this.name = form.email;
+        this.updateName.emit(this.name);
+        this.setName(form.email);
         this.setToken(resp.token);
         if (resp.message) {
           this.showMessage(resp.message);
@@ -62,7 +80,10 @@ export class AuthService {
   logout = () => {
     this.isLogin = false;
     this.updateLogin.emit(this.isLogin);
+    this.name = null;
+    this.updateName.emit(this.name);
     localStorage.removeItem(TOKEN);
+    localStorage.removeItem(NAME);
   }
 
 }
