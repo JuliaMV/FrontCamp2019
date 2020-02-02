@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -6,17 +8,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  form: FormGroup;
 
-  constructor() { }
+  constructor( private authService: AuthService) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+    });
   }
 
   loginHandler = () => {
-    console.log('login');
+    if (this.form.valid) {
+      const formData = { ...this.form.value };
+      this.authService.login(formData);
+    }
   }
 
   registerHandler = () => {
-    console.log('register');
+    if (this.form.valid) {
+      const formData = { ...this.form.value };;
+      this.authService.register(formData);
+    }
   }
+
+
+
 }

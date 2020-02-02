@@ -1,21 +1,31 @@
 <div class="row container login-page">
-  <form class="col s12">
+  <form class="col s12" [formGroup]="form">
     <div class="row">
-      <div class="input-field col s4 offset-s4">
-        <input id="email" type="email" class="validate">
+      <div class="input-field col s6 offset-s2">
+        <input id="email" type="email" class="validate" formControlName="email">
         <label for="email">Email</label>
+        <div
+          *ngIf="form.get('email').invalid && form.get('email').touched"
+           class="validation"
+        >
+          <small>
+            Email field can't be empty
+          </small>
+          <small>
+            Enter correct email
+          </small>
+        </div>
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s4 offset-s4">
-        <input id="password" type="password" class="validate">
+      <div class="input-field col s6 offset-s2">
+        <input id="password" type="password" class="validate" formControlName="password">
         <label for="password">Password</label>
       </div>
     </div>
     <div class="row">
-
-      <a class="btn col s1 offset-s4" (click)="loginHandler()">Login</a>
-      <a class="btn col s1 offset-s2" (click)="registerHandler()">Register</a>
+      <button class="btn col s2 offset-s2" [disabled]="form.invalid" (click)="loginHandler()">Login</button>
+      <button class="btn col s2 offset-s2" [disabled]="form.invalid" (click)="registerHandler()">Register</button>
     </div>
   </form>
 </div>

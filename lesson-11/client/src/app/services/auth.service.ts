@@ -1,35 +1,68 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+
+const TOKEN = 'TOKEN';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  isLogin = true;
+  isLogin = false;
   updateLogin: EventEmitter<boolean> = new EventEmitter();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  register = async (form) => {
-    const { email, password } = form;
-    const headers = {['Content-Type']: 'application/json'};
-    const response = await fetch('/api/auth/register', { method: 'POST', body: JSON.stringify(form), headers });
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.log('Error', data.message);
-    }
-    catch(error) {
-      console.log(error);
+  showMessage = (message) => {
+    if ((window as any).M && message) {
+      (window as any).M.toast({html: message});
     }
   }
 
-  // setSelectedSource = (id: string) => {
-  //   if (id !== this.selectedSource.id) {
-  //     this.news = [];
-  //     this.page = 1;
-  //     this.selectedSource = this.sources.find(source => source.id === id);
-  //     this.updateSelectedSource.emit(this.selectedSource);
-  //   }
-  // }
+  setToken = (token: string): void => {
+    localStorage.setItem(TOKEN, token);
+  }
+
+
+  isLogged = () => {
+    if (localStorage.getItem(TOKEN) !== null) {
+      this.isLogin = true;
+      this.updateLogin.emit(this.isLogin);
+    }
+  }
+
+  register = (form) => {
+    this.http
+      .post('/api/auth/register', form, {})
+      .subscribe((resp: { message?: string }) => {
+        if (resp.message) {
+          this.showMessage(resp.message);
+        }
+      }, error => {
+        this.showMessage(error.error.message || error.message);
+      });
+  }
+
+  login = (form) => {
+    this.http
+      .post('/api/auth/login', form, {})
+      .subscribe((resp: { token?: string, message?: string }) => {
+        this.isLogin = true;
+        this.updateLogin.emit(this.isLogin);
+        this.setToken(resp.token);
+        if (resp.message) {
+          this.showMessage(resp.message);
+        }
+        this.router.navigate(['/']);
+      }, error => {
+        this.showMessage(error.error.message || error.message);
+      });
+  }
+
+  logout = () => {
+    this.isLogin = false;
+    this.updateLogin.emit(this.isLogin);
+    localStorage.removeItem(TOKEN);
+  }
+
 }

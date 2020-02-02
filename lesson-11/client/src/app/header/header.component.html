@@ -10,9 +10,9 @@
       </li>
 
       <li>
-        <button *ngIf="isLogin; else logout" class="btn">Logout</button>
+        <button *ngIf="isLogin; else logout" class="btn" (click)="this.onLogout()">Logout</button>
         <ng-template  #logout>
-          <button class="btn">Login</button>
+          <a routerLink="/login" class="btn">Login</a>
         </ng-template>
       </li>
 

@@ -3,8 +3,8 @@
   <div class="controls">
     <app-select [isDisabled]="isOwnNews"></app-select>
     <app-search></app-search>
-    <app-created-checkbox [isChecked]="isOwnNews" (onClickCreateBtn)="isOwnNews = !isOwnNews"></app-created-checkbox>
-    <app-create-btn></app-create-btn>
+    <app-created-checkbox *ngIf="isLogin" [isChecked]="isOwnNews" (onClickCreateBtn)="isOwnNews = !isOwnNews"></app-created-checkbox>
+    <app-create-btn *ngIf="isLogin"></app-create-btn>
   </div>
 
 

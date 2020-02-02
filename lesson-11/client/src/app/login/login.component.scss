@@ -1,3 +1,13 @@
 .login-page {
   padding-top: 50px;
 }
+
+input.ng-invalid.ng-touched {
+  border-bottom: 1px solid #F44336;
+  -webkit-box-shadow: 0 1px 0 0 #F44336;
+  box-shadow: 0 1px 0 0 #F44336;
+}
+
+div.validation small{
+  color:  #F44336
+}

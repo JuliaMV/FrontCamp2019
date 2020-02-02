@@ -14,7 +14,6 @@ export class LoadMoreBtnComponent implements OnInit {
   }
 
   onLoadMore() {
-    console.log('load more');
   }
 
 }

@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: '404', component: NotFoundComponent },
   { path: 'create', component: CreateNewsComponent },
   { path: 'edit', component: EditNewsComponent },
-  { path: 'acticle', component: ArticleComponent },
+  { path: 'article', component: ArticleComponent },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: '/404' }
 ];

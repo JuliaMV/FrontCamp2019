@@ -15,7 +15,7 @@ import { CreatedCheckboxComponent } from './created-checkbox/created-checkbox.co
 import { CreateBtnComponent } from './create-btn/create-btn.component';
 import { NewsCardComponent } from './news-card/news-card.component';
 import { LoadMoreBtnComponent } from './load-more-btn/load-more-btn.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { CreateNewsComponent } from './create-news/create-news.component';
 import {EditNewsComponent} from './edit-news/edit-news.component';
@@ -46,6 +46,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [],

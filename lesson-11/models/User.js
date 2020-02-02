@@ -10,12 +10,6 @@ const schema = new Schema({
         type: String,
         required: true,
     },
-    news: [
-        {
-            type: Types.ObjectId,
-            ref: 'News'
-        }
-    ]
 });
 
 module.exports = model('User', schema)
