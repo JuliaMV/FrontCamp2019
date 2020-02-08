@@ -1,0 +1,13 @@
+.footer {
+  background-color: var(--gray-deep);
+}
+
+.container {
+  margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+}
