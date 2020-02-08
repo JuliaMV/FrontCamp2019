@@ -88,6 +88,10 @@ describe('async actions for FilmPage', () => {
       body: { title: 'title', genres: ['comedy'] },
       headers: { 'content-type': 'application/json' },
     });
+    fetchMock.getOnce(`${API_URL}/movies?search=comedy&searchBy=genres&sortBy=raiting&sortOrder=desc&limit=9`, {
+      body: {},
+      headers: { 'content-type': 'application/json' },
+    });
     const expectedActions = [
       { type: START_LOADING_FILM },
       { type: UPDATE_FILM_DESCRIPTION, payload: { title: 'title', genres: ['comedy'] } },
@@ -95,7 +99,6 @@ describe('async actions for FilmPage', () => {
     const store = mockStore({ filmPage: {} });
     return store.dispatch(loadFilmDescription({ id: 123, filter: 'title', sort: 'raiting' }))
       .then(() => {
-        console.log(store.getActions());
         expect(store.getActions()).toEqual(expectedActions);
       });
   });
