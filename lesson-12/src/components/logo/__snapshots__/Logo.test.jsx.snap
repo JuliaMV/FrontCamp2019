@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo component it matches the snapshot 1`] = `
+<a
+  href="/"
+  onClick={[Function]}
+>
+  netlix
+  <span>
+    roulette
+  </span>
+</a>
+`;
