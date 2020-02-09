@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card component should render with props 1`] = `
+<li
+  key="1325"
+>
+  <Link
+    to="/film/1325"
+  >
+    <img
+      alt="description"
+      src="http://image.com"
+    />
+  </Link>
+  <div>
+    <div>
+      <h3>
+        News title
+      </h3>
+      <span>
+        fantasy
+      </span>
+    </div>
+    <span>
+      2019
+    </span>
+  </div>
+</li>
+`;

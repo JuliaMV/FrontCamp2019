@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SortPanel component should render with default props 1`] = `
+<div>
+  <div>
+    <p>
+      Sort by
+    </p>
+  </div>
+</div>
+`;
+
+exports[`SortPanel component should render with enabled filter 1`] = `
+<div>
+  <div>
+    <p>
+      Sort by
+    </p>
+    <Filter
+      activeFilter=""
+      fields={
+        Array [
+          "release date",
+          "rating",
+        ]
+      }
+      filterHandler={[Function]}
+      title="sort by"
+    />
+  </div>
+</div>
+`;

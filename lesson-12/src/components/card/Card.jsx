@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import css from './Card.module.css';
 
-const Card = ({
+export const Card = ({
   img, title, genres, date, id,
 }) => (
   <li className={css.card} key={id}>

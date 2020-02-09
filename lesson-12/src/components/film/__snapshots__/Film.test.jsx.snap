@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Film component should render with props 1`] = `
+<div>
+  <div>
+    <header>
+      <Logo />
+      <Link
+        to="/"
+      >
+        <SearchIcon />
+      </Link>
+    </header>
+    <main>
+      <img
+        alt="description"
+        src="http://image.com"
+      />
+      <div>
+        <div>
+          <h2>
+            News title
+          </h2>
+          <span>
+            15
+          </span>
+        </div>
+        <p>
+          fantasy
+        </p>
+        <div>
+          <span>
+            2019
+          </span>
+          <span>
+            125 min
+          </span>
+        </div>
+        <p>
+          Lorem ipsum
+        </p>
+      </div>
+    </main>
+  </div>
+</div>
+`;

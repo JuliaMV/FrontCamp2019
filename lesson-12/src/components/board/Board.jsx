@@ -39,5 +39,4 @@ Board.propTypes = {
   films: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
-
 export default Board;

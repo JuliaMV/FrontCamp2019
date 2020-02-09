@@ -8,7 +8,7 @@ import Footer from 'components/footer/Footer';
 import ErrorTitle from 'components/errorTitle/ErrorTitle';
 
 
-const ErrorPage = ({ title }) => (
+export const ErrorPage = ({ title }) => (
   <>
     <Header />
     <div style={{ position: 'relative' }}>

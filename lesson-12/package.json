@@ -12,35 +12,11 @@
     "style:fix": "./node_modules/.bin/stylelint src/ --fix",
     "test": "jest --detectOpenHandles",
     "test:watch": "npm test -- --watch",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage --detectOpenHandles"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "jest": {
-    "moduleNameMapper": {
-      "^src(.*)$": "<rootDir>/src$1",
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    },
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!<rootDir>/node_modules/"
-    ],
-    "reporters": [
-      "default",
-      [
-        "@reportportal/reportportal-agent-jest",
-        {
-          "token": "3621b290-2401-454c-8167-44f10f760026",
-          "endpoint": "https://beta.demo.reportportal.io/api/v1",
-          "project": "juliamv_personal",
-          "launch": "juliamv_personal",
-          "tags": ["tag1", "tag2"]
-        }
-      ]
-    ]
-  },
   "dependencies": {
     "history": "^4.10.1",
     "prop-types": "^15.7.2",
@@ -63,6 +39,9 @@
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.4",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",

@@ -26,10 +26,17 @@ const Filter = (props) => {
 };
 
 Filter.propTypes = {
-  title: PropTypes.string.isRequired,
-  fields: PropTypes.arrayOf(PropTypes.string).isRequired,
-  activeFilter: PropTypes.string.isRequired,
-  filterHandler: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  fields: PropTypes.arrayOf(PropTypes.string),
+  activeFilter: PropTypes.string,
+  filterHandler: PropTypes.func,
+};
+
+Filter.defaultProps = {
+  title: 'Search by',
+  fields: ['title', 'genre'],
+  activeFilter: 'title',
+  filterHandler: () => {},
 };
 
 export default Filter;

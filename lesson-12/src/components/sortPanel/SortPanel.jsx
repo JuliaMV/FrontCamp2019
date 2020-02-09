@@ -25,13 +25,14 @@ const SortPanel = (props) => {
 
 
 SortPanel.propTypes = {
-  description: PropTypes.string.isRequired,
+  description: PropTypes.string,
   isFilter: PropTypes.bool,
   activeFilter: PropTypes.string,
   filterHandler: PropTypes.func,
 };
 
 SortPanel.defaultProps = {
+  description: 'Sort by',
   isFilter: false,
   activeFilter: '',
   filterHandler: () => {},

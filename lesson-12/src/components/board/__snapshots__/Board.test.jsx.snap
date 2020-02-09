@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Board component should render with 1 film 1`] = `
+<ul>
+  <withRouter(Card)
+    genres={
+      Array [
+        "fantasy",
+      ]
+    }
+    id={1325}
+    key="1325"
+    title="News title"
+  />
+</ul>
+`;
+
+exports[`Board component should render with 3 films 1`] = `
+<ul>
+  <withRouter(Card)
+    genres={
+      Array [
+        "fantasy",
+      ]
+    }
+    id={1325}
+    key="1325"
+    title="News title"
+  />
+  <withRouter(Card)
+    genres={
+      Array [
+        "action",
+      ]
+    }
+    id={132500}
+    key="132500"
+    title="Film title"
+  />
+  <withRouter(Card)
+    genres={
+      Array [
+        "comedy",
+        "drama",
+      ]
+    }
+    id={135}
+    key="135"
+    title="Lalala"
+  />
+</ul>
+`;
+
+exports[`Board component should render without films 1`] = `
+<ul>
+  <li>
+    No films found
+  </li>
+</ul>
+`;

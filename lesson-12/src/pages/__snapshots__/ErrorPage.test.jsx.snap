@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error page should matches the snapshot with title "ERROR TITLE" 1`] = `
+<Fragment>
+  <Header
+    activeFilter="title"
+    filmsHandler={[Function]}
+    filterHandler={[Function]}
+  />
+  <div
+    style={
+      Object {
+        "position": "relative",
+      }
+    }
+  >
+    <SortPanel
+      activeFilter=""
+      description=""
+      filterHandler={[Function]}
+      isFilter={true}
+    />
+    <ErrorTitle
+      title="ERROR TITLE"
+    />
+  </div>
+  <Footer />
+</Fragment>
+`;
