@@ -1,27 +1,21 @@
-// describe('My First Test', () => {
-//   it('Does not do much!', () => {
-//     expect(true).to.equal(true);
-//   });
-// });
-
 describe('My First Test', () => {
-  it('Gets, types and asserts', () => {
-    cy.visit('https://example.cypress.io');
+  it('Visits the Kitchen Sink', () => {
+    cy.visit('/');
 
-    cy.contains('type').click();
+    cy.get('#search-input')
+      .type('Home Alone')
+      .should('have.value', 'Home Alone');
 
-    // Should be on a new URL which includes '/commands/actions'
-    cy.url().should('include', '/commands/actions');
+    cy.get('button[type="submit"]')
+      .click();
 
-    // Get an input, type into it and verify that the value has been updated
-    cy.get('.action-email')
-      .type('fake@email.com')
-      .should('have.value', 'fake@email.com');
+    cy.url().should('include', 'Home%20Alone');
+
+    cy.get('#filmsList')
+      .should('be.visible')
+      .find('li')
+      .should(($li) => {
+        expect($li).to.have.length(4);
+      });
   });
 });
-
-// describe('My First Test', () => {
-//   it('Visits the Kitchen Sink', () => {
-//     cy.visit('http://localhost:8080/');
-//   });
-// });

@@ -28,7 +28,7 @@ class Board extends React.Component {
       : this.noFilms();
 
     return (
-      <ul className={css.container}>
+      <ul className={css.container} id="filmsList">
         { content }
       </ul>
     );
