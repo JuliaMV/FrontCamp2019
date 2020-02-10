@@ -5,11 +5,18 @@
       "es6": true,
       "browser": true,
       "node": true,
-      "jest": true
+      "jest": true,
+      "cypress/globals": true
   },
+  "plugins": [
+    "cypress"
+  ],
   "rules": {
     "react/state-in-constructor": [0],
     "import/no-unresolved": [0],
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
   }
 }
