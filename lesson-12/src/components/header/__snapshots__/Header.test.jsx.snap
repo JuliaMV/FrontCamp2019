@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should render with default props 1`] = `
+<header>
+  <div>
+    <h1>
+      <Logo />
+    </h1>
+    <h2>
+      Find your movie
+    </h2>
+    <form
+      action=""
+      method="get"
+      onSubmit={[Function]}
+    >
+      <input
+        id="search-input"
+        name="search-input"
+        onChange={[Function]}
+        type="text"
+      />
+      <button
+        type="submit"
+      >
+        Search
+      </button>
+    </form>
+    <div>
+      <Filter
+        activeFilter="title"
+        fields={
+          Array [
+            "title",
+            "genre",
+          ]
+        }
+        filterHandler={[Function]}
+        title="search by"
+      />
+    </div>
+  </div>
+</header>
+`;

@@ -3,7 +3,7 @@ import Enzyme, { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Adapter from 'enzyme-adapter-react-16';
 
-import Header from './Header';
+import Header from './Нeader';
 
 Enzyme.configure({ adapter: new Adapter() });
 
