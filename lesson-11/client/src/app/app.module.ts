@@ -22,6 +22,7 @@ import {EditNewsComponent} from './edit-news/edit-news.component';
 import { ArticleComponent } from './article/article.component';
 import { LoginComponent } from './login/login.component';
 import { SearchPipe } from './pipes/search.pipe';
+import {RefDirective} from "./ref.directive";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SearchPipe } from './pipes/search.pipe';
     EditNewsComponent,
     ArticleComponent,
     LoginComponent,
-    SearchPipe
+    SearchPipe,
+    RefDirective,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import { SearchPipe } from './pipes/search.pipe';
     HttpClientModule,
   ],
   providers: [],
+  entryComponents: [NewsCardComponent,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

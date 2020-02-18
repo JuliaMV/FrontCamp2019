@@ -9,7 +9,8 @@
 
 
   <ul *ngIf="!loading; else loader">
-    <app-news-card *ngFor="let news of newsList | search:searchValue" [news]="news"></app-news-card>
+    <ng-template appRef></ng-template>
+<!--    <app-news-card *ngFor="let news of newsList | search:searchValue" [news]="news"></app-news-card>-->
     <app-load-more-btn *ngIf="newsList.length" (click)="loadMore()"></app-load-more-btn>
   </ul>
 
