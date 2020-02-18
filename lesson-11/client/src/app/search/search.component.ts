@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchService} from '../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -9,14 +10,17 @@ export class SearchComponent implements OnInit {
   label = 'Search by keyword';
   placeHolder = 'Search...';
 
-  constructor() { }
+  constructor( private searchService: SearchService) { }
 
   ngOnInit() {
 
   }
 
   onInput(event) {
-    console.log((event.target as HTMLInputElement).value);
+    const value = (event.target as HTMLInputElement).value;
+    if (value.trim()) {
+      this.searchService.setSearch(value.trim());
+    }
   }
 
 }

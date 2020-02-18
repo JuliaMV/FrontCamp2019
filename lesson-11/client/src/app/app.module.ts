@@ -21,6 +21,7 @@ import { CreateNewsComponent } from './create-news/create-news.component';
 import {EditNewsComponent} from './edit-news/edit-news.component';
 import { ArticleComponent } from './article/article.component';
 import { LoginComponent } from './login/login.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     CreateNewsComponent,
     EditNewsComponent,
     ArticleComponent,
-    LoginComponent
+    LoginComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

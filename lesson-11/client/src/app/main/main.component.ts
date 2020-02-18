@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {INews, ISource} from '../interfaces';
 import {NewsApiService} from '../services/news-api.service';
 import {AuthService} from "../services/auth.service";
+import {SearchService} from "../services/search.service";
 
 
 @Component({
@@ -16,8 +17,12 @@ export class MainComponent implements OnInit {
   loading = false;
   title: string;
   isLogin = false;
+  searchValue: string;
 
-  constructor( private newsApiService: NewsApiService, private authService: AuthService) { }
+  constructor( private newsApiService: NewsApiService,
+               private authService: AuthService,
+               private searchService: SearchService,
+  ) { }
 
   ngOnInit() {
     this.newsApiService.updateNewsList.subscribe((news: INews[]) => {
@@ -25,6 +30,9 @@ export class MainComponent implements OnInit {
     });
     this.newsApiService.updateSelectedSource.subscribe((source: ISource) => {
       this.title = source.name;
+    });
+    this.searchService.updateSearchValue.subscribe((value: string) => {
+      this.searchValue = value;
     });
 
     this.authService.updateLogin.subscribe((isLogin: boolean) => {

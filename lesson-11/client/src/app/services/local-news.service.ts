@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalNewsService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   createNews = (form) => {
-    console.log(form);
+    this.http
+      .post('/api/news', form)
+      .subscribe(response => {
+        console.log('resp', response);
+      });
   }
 }
