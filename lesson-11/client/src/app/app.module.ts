@@ -23,6 +23,7 @@ import { ArticleComponent } from './article/article.component';
 import { LoginComponent } from './login/login.component';
 import { SearchPipe } from './pipes/search.pipe';
 import {RefDirective} from "./ref.directive";
+import { FooterElementComponent } from './footer-element/footer-element.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {RefDirective} from "./ref.directive";
     LoginComponent,
     SearchPipe,
     RefDirective,
+    FooterElementComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,7 @@ import {RefDirective} from "./ref.directive";
     HttpClientModule,
   ],
   providers: [],
-  entryComponents: [NewsCardComponent,],
+  entryComponents: [NewsCardComponent, FooterElementComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
